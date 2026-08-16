@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رَف | RAFF - المنصة العُمانية للمشاريع والمنتجات</title>
+
+    <!-- Google Fonts: Tajawal -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0d3b38;
+            --primary-light: #165b56;
+            --rose: #FFC9D0;
+            --rose-light: #FDCBD1;
+            --accent: #C59B27;
+            --omr-red: #8B0000;
+            --bg: #FBF9F5;
+            --white: #FFFFFF;
+            --text-dark: #1A1A1A;
+            --text-gray: #666666;
+            --border: #E8E3D9;
+            --shadow-sm: 0 2px 8px rgba(13, 59, 56, 0.06);
+            --shadow-md: 0 6px 18px rgba(13, 59, 56, 0.1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--bg); color: var(--text-dark); padding-bottom: 80px; }
+
+        /* SVG Oman Rial Symbol Style */
+        .omr-icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            vertical-align: middle;
+            margin-right: 2px;
+        }
+
+        /* Top Banner */
+        .top-bar { background: var(--primary); color: white; text-align: center; padding: 10px 15px; font-size: 13px; font-weight: 700; }
+        .top-bar span { color: var(--rose); background: rgba(255, 201, 208, 0.2); padding: 2px 8px; border-radius: 6px; }
+
+        /* Header Navigation */
+        header { background: var(--white); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm); }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-svg { width: 38px; height: 38px; }
+        .logo-text { font-size: 22px; font-weight: 900; color: var(--primary); letter-spacing: -0.5px; }
+
+        .location-selector { display: flex; align-items: center; gap: 6px; background: rgba(255, 201, 208, 0.3); padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; color: var(--primary); cursor: pointer; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+
+        /* Search & Categories */
+        .search-section { padding: 16px 0; }
+        .search-box { position: relative; width: 100%; }
+        .search-input { width: 100%; padding: 14px 45px 14px 16px; border: 2px solid var(--border); border-radius: 16px; font-size: 14px; background: white; outline: none; transition: 0.3s; }
+        .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(13, 59, 56, 0.1); }
+        .search-icon { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--text-gray); }
+
+        .categories-wrapper { display: flex; gap: 12px; overflow-x: auto; padding: 5px 0 15px 0; scrollbar-width: none; }
+        .categories-wrapper::-webkit-scrollbar { display: none; }
+        .cat-card { min-width: 85px; background: white; border: 1px solid var(--border); border-radius: 16px; padding: 12px 8px; text-align: center; cursor: pointer; transition: 0.2s; flex-shrink: 0; }
+        .cat-card.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .cat-card .icon { font-size: 24px; margin-bottom: 4px; display: block; }
+        .cat-card .title { font-size: 11px; font-weight: 700; }
+
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin: 24px 0 14px 0; }
+        .section-title { font-size: 18px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+        .section-link { font-size: 12px; color: var(--primary); font-weight: 700; text-decoration: none; cursor: pointer; }
+
+        /* Brands Horizontal Scroll */
+        .brands-scroll { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
+        .brand-item { min-width: 130px; background: white; border-radius: 16px; padding: 12px; border: 1px solid var(--border); text-align: center; box-shadow: var(--shadow-sm); cursor: pointer; flex-shrink: 0; }
+        .brand-avatar { width: 50px; height: 50px; border-radius: 50%; background: var(--rose-light); margin: 0 auto 8px auto; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: var(--primary); border: 2px solid var(--rose); overflow: hidden; }
+        .brand-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .brand-name { font-size: 12px; font-weight: 800; color: var(--text-dark); margin-bottom: 4px; }
+        .brand-meta { font-size: 10px; color: var(--text-gray); }
+
+        /* Products Grid */
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
+        @media(min-width: 768px) { .products-grid { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 20px; } }
+
+        .product-card { background: white; border-radius: 18px; border: 1px solid var(--border); overflow: hidden; position: relative; display: flex; flex-direction: column; justify-content: space-between; transition: 0.2s; box-shadow: var(--shadow-sm); }
+        .product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        
+        .product-badge { position: absolute; top: 10px; right: 10px; background: rgba(13, 59, 56, 0.85); color: white; padding: 4px 8px; border-radius: 10px; font-size: 10px; font-weight: 800; backdrop-filter: blur(4px); }
+        .distance-badge { position: absolute; top: 10px; left: 10px; background: var(--rose); color: var(--primary); padding: 4px 8px; border-radius: 10px; font-size: 10px; font-weight: 800; }
+
+        .product-image { width: 100%; height: 130px; background: #F4EFEA; display: flex; align-items: center; justify-content: center; font-size: 42px; overflow: hidden; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; }
+
+        .product-details { padding: 12px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .store-info { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+        .store-name { font-size: 11px; font-weight: 700; color: var(--primary-light); }
+        .rating { color: var(--accent); font-size: 11px; font-weight: 800; }
+
+        .product-title { font-size: 13px; font-weight: 800; color: var(--text-dark); margin-bottom: 6px; line-height: 1.3; }
+        .delivery-zone { font-size: 10px; color: var(--text-gray); margin-bottom: 8px; }
+
+        .product-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; border-top: 1px solid var(--border); }
+        .product-price { font-size: 14px; font-weight: 900; color: var(--primary); display: flex; align-items: center; gap: 4px; }
+
+        .btn-order { background: var(--primary); color: white; border: none; padding: 8px 12px; border-radius: 10px; font-size: 11px; font-weight: 800; cursor: pointer; transition: 0.2s; font-family: 'Tajawal'; }
+
+        .fab-btn { position: fixed; bottom: 20px; left: 20px; background: var(--rose); color: var(--primary); padding: 12px 20px; border-radius: 30px; font-weight: 800; font-size: 13px; border: 2px solid var(--primary); box-shadow: var(--shadow-md); cursor: pointer; z-index: 90; display: flex; align-items: center; gap: 8px; }
+
+        /* Modals & Subscriptions */
+        .modal-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 16px; backdrop-filter: blur(4px); }
+        .modal-overlay.active { display: flex; }
+        .modal-card { background: white; border-radius: 24px; padding: 24px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: var(--shadow-md); }
+        .modal-close { position: absolute; top: 16px; left: 16px; font-size: 20px; font-weight: bold; cursor: pointer; background: var(--bg); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+        .form-group { margin-bottom: 14px; text-align: right; }
+        .form-label { display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+        .form-input, .form-select { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 12px; font-size: 13px; outline: none; font-family: 'Tajawal'; background: var(--bg); }
+
+        .plan-card { border: 2px solid var(--border); border-radius: 16px; padding: 16px; margin-bottom: 12px; cursor: pointer; transition: 0.3s; position: relative; }
+        .plan-card.selected { border-color: var(--primary); background: rgba(255, 201, 208, 0.15); }
+        .plan-badge { position: absolute; top: -10px; left: 15px; background: var(--accent); color: white; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 10px; }
+
+        .payment-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
+        .payment-box { border: 1px solid var(--border); border-radius: 12px; padding: 10px; text-align: center; font-size: 11px; font-weight: 700; cursor: pointer; background: var(--bg); }
+        .payment-box.active { border-color: var(--primary); background: var(--rose-light); color: var(--primary); }
+
+        .demo-notice { background: #FFF3CD; color: #856404; padding: 8px; border-radius: 8px; font-size: 11px; margin-top: 8px; text-align: center; border: 1px solid #FFEEBA; }
+
+        footer { background: var(--primary); color: white; text-align: center; padding: 30px 16px; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+    <!-- Template Definition for Official OMR Symbol -->
+    <svg style="display: none;">
+        <symbol id="omr-symbol" viewBox="0 0 100 80">
+            <!-- Official Oman Rial Geometric Icon Design -->
+            <path d="M 30,10 C 25,10 20,20 20,35 C 20,50 35,50 50,35 C 65,20 75,10 85,10 C 90,10 95,15 95,22 C 95,35 70,35 50,45 C 30,55 10,65 5,75" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
+            <line x1="10" y1="40" x2="90" y2="40" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
+            <line x1="15" y1="58" x2="85" y2="58" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
+        </symbol>
+    </svg>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        🔥 عرض الإطلاق العُماني: باقي <span id="spotsLeft">15 مقعداً</span> فقط للتسجيل المجاني لمدة <b>سنة كاملة (365 يوم)</b> لأول المتاجر!
+    </div>
+
+    <!-- Navigation Header -->
+    <header>
+        <a href="#" class="logo">
+            <svg class="logo-svg" viewBox="0 0 100 100" fill="none">
+                <rect width="100" height="100" rx="24" fill="#0D3B38"/>
+                <path d="M30 35H70" stroke="#FFC9D0" stroke-width="8" stroke-linecap="round"/>
+                <path d="M25 55H75" stroke="#FFC9D0" stroke-width="8" stroke-linecap="round"/>
+                <path d="M35 75H65" stroke="#C59B27" stroke-width="8" stroke-linecap="round"/>
+            </svg>
+            <span class="logo-text">رَف RAFF</span>
+        </a>
+
+        <div class="location-selector" onclick="changeLocation()">
+            📍 <span id="currentLocText">مسقط - السيب</span> ▾
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Search Section -->
+        <div class="search-section">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" class="search-input" onkeyup="filterAll()" placeholder="ابحث عن منتج، مخبوزات، عطور، أو خدمة رقمية...">
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="categories-wrapper">
+            <div class="cat-card active" onclick="selectCategory('all', this)"><span class="icon">✨</span><span class="title">الكل</span></div>
+            <div class="cat-card" onclick="selectCategory('sweets', this)"><span class="icon">🍰</span><span class="title">حلويات ومخبوزات</span></div>
+            <div class="cat-card" onclick="selectCategory('digital', this)"><span class="icon">💻</span><span class="title">منتجات رقمية</span></div>
+            <div class="cat-card" onclick="selectCategory('perfumes', this)"><span class="icon">🌸</span><span class="title">عطور وبخور</span></div>
+            <div class="cat-card" onclick="selectCategory('handmade', this)"><span class="icon">🎨</span><span class="title">طباعة ومشغولات</span></div>
+            <div class="cat-card" onclick="selectCategory('coffee', this)"><span class="icon">☕</span><span class="title">قهوة واختصاص</span></div>
+        </div>
+
+        <!-- Top Merchants Scroll -->
+        <div class="section-header">
+            <div class="section-title">🏪 المتاجر والبراندات العُمانية</div>
+            <span class="section-link" onclick="openAddStoreModal()">انضم كتاجر +</span>
+        </div>
+        <div class="brands-scroll" id="brandsContainer"></div>
+
+        <!-- Top Products -->
+        <div class="section-header">
+            <div class="section-title">🔥 الأكثر طلباً وتقييماً هذا الأسبوع</div>
+        </div>
+        <div class="products-grid" id="topProductsGrid"></div>
+
+        <!-- All Products Grid -->
+        <div class="section-header" style="margin-top: 35px;">
+            <div class="section-title">🛍️ استكشف رفوف المتاجر القريبة منك</div>
+        </div>
+        <div class="products-grid" id="allProductsGrid"></div>
+    </div>
+
+    <!-- Floating Join Button -->
+    <div class="fab-btn" onclick="openAddStoreModal()">
+        <span>🏬</span>
+        <span>سجل متجرك (احصل على سنة مجاناً)</span>
+    </div>
+
+    <!-- Modal: Add Store / Subscription -->
+    <div class="modal-overlay" id="addModal">
+        <div class="modal-card">
+            <div class="modal-close" onclick="closeModal('addModal')">✕</div>
+            <h3 style="color: var(--primary); margin-bottom: 4px;">انضمام متجر جديد إلى RAFF 🇴🇲</h3>
+            <p style="font-size: 11px; color: var(--text-gray); margin-bottom: 16px;">
+                عرض الإطلاق: باقي <b style="color: red;" id="modalSpotsLeft">15</b> مقاعد للحصول على **اشتراك سنة مجانية بالكامل**!
+            </p>
+
+            <form onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label class="form-label">اسم المتجر / البراند</label>
+                    <input type="text" id="pStore" class="form-input" placeholder="مثال: بيكس Bakes" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">اسم المنتج أو الخدمة الأولى</label>
+                    <input type="text" id="pTitle" class="form-input" placeholder="مثال: كيكة السينابون والكراميل" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">السعر (بالريال العُماني)</label>
+                    <input type="number" step="0.100" id="pPrice" class="form-input" placeholder="مثال: 4.500" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">رقم الواتساب لاستقبال الطلبات المباشرة</label>
+                    <input type="tel" id="pPhone" class="form-input" placeholder="+96890000000" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">قسم المنتج</label>
+                    <select id="pCategory" class="form-select">
+                        <option value="sweets">🍰 حلويات ومخبوزات</option>
+                        <option value="digital">💻 منتج / خدمة رقمية</option>
+                        <option value="perfumes">🌸 عطور وبخور</option>
+                        <option value="handmade">🎨 مشغولات يدوية وطباعة</option>
+                        <option value="coffee">☕ قهوة واختصاص</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">نطاق التوصيل والنفاذ الجغرافي</label>
+                    <select id="pDelivery" class="form-select">
+                        <option value="ولاية السيب فقط">ولاية السيب فقط</option>
+                        <option value="محافظة مسقط بالكامل">محافظة مسقط بالكامل</option>
+                        <option value="جميع محافظات السلطنة 🇴🇲">جميع محافظات السلطنة 🇴🇲</option>
+                        <option value="تسليم آلي فوري (منتج رقمي ⚡)">تسليم آلي فوري (منتج رقمي ⚡)</option>
+                    </select>
+                </div>
+
+                <!-- Subscription Tiers -->
+                <div class="form-group">
+                    <label class="form-label">اختر نوع الاشتراك في منصة رَف</label>
+                    
+                    <div class="plan-card selected" id="freePlanCard" onclick="selectPlan('free')">
+                        <span class="plan-badge">مجاني لأول 15 تاجر</span>
+                        <div style="font-weight: 800; font-size: 13px; color: var(--primary);">🎁 باقة الإطلاق السنوية (سنة مجانية)</div>
+                        <div style="font-size: 11px; color: var(--text-gray); margin-top: 4px;">
+                            0.000 <svg class="omr-icon" style="color:var(--omr-red)"><use href="#omr-symbol"/></svg> / لمدة 365 يوماً كاملة!
+                        </div>
+                    </div>
+
+                    <div class="plan-card" id="basicPlanCard" onclick="selectPlan('basic')">
+                        <div style="font-weight: 800; font-size: 13px; color: var(--primary);">📦 الباقة الأساسية (Basic Shelf)</div>
+                        <div style="font-size: 11px; color: var(--text-gray); margin-top: 4px;">
+                            1.500 <svg class="omr-icon" style="color:var(--omr-red)"><use href="#omr-symbol"/></svg> / شهرياً
+                        </div>
+                    </div>
+
+                    <div class="plan-card" id="aiPlanCard" onclick="selectPlan('ai')">
+                        <span class="plan-badge" style="background: var(--primary);">مدعوم بـ Gemini AI</span>
+                        <div style="font-weight: 800; font-size: 13px; color: var(--primary);">✨ الباقة المتقدمة الذكية (Pro AI)</div>
+                        <div style="font-size: 11px; color: var(--text-gray); margin-top: 4px;">
+                            3.500 <svg class="omr-icon" style="color:var(--omr-red)"><use href="#omr-symbol"/></svg> / شهرياً (كتابة تسويقية + أولوية ظهور)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Selection Area (Demo for now) -->
+                <div id="paymentArea" style="display: none;" class="form-group">
+                    <label class="form-label">طرق الدفع التجريبية (معاينة):</label>
+                    <div class="payment-options">
+                        <div class="payment-box active" onclick="selectPayMethod('thawani', this)">💳 عمان نت OmanNet / ثواني</div>
+                        <div class="payment-box" onclick="selectPayMethod('apple', this)">🍎 Apple Pay</div>
+                        <div class="payment-box" onclick="selectPayMethod('card', this)">🌐 فيزا / ماستركارد</div>
+                    </div>
+                    <div class="demo-notice">ℹ️ تنبيه: الدفع معروض كنموذج تجريبي لحين تفعيل الربط البنكي الرسمي.</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">صورة المنتج (اختر صورة من جهازك)</label>
+                    <input type="file" id="pImageFile" class="form-input" accept="image/*" onchange="previewImage(event)">
+                    <input type="hidden" id="pImageBase64">
+                </div>
+
+                <button type="submit" id="submitBtn" style="width: 100%; padding: 14px; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: 800; font-size: 14px; cursor: pointer; font-family: 'Tajawal'; margin-top: 10px;">تأكيد الانضمام وحجز الرف 🚀</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <h3 style="font-size: 20px; font-weight: 900;">رَف | RAFF</h3>
+        <p>المنصة العُمانية الأولى لربط المتاجر المنزلية والمنتجات الرقمية بالعملاء المباشرين</p>
+        <p style="margin-top: 15px; opacity: 0.5;">جميع الحقوق محفوظة © 2026</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        let freeSlotsUsed = parseInt(localStorage.getItem('raff_free_slots_used')) || 0;
+        const maxFreeSlots = 15;
+
+        // Mock Products Data with Exact OMR Format
+        const initialProducts = [
+            { id: 1, title: 'كيكة السينابون والكراميل', store: 'بيكس Bakes', price: '4.500', category: 'sweets', phone: '+96890000000', rating: '4.9 ★ (120+)', delivery: 'محافظة مسقط', distance: '2.4 كم', isTop: true, image: '🍰' },
+            { id: 2, title: 'منظم الميزانية الشهرية الرقمي PDF', store: 'رف رقمي Raff Digital', price: '3.000', category: 'digital', phone: '+96890000000', rating: '5.0 ★ (85+)', delivery: 'تسليم آلي فوري (منتج رقمي ⚡)', distance: 'رقمي ⚡', isTop: true, image: '📄' },
+            { id: 3, title: 'عطر اللبان العُماني واللافندر', store: 'أنفاس الورد', price: '12.000', category: 'perfumes', phone: '+96890000000', rating: '4.8 ★ (64+)', delivery: 'جميع محافظات السلطنة 🇴🇲', distance: '5.1 كم', isTop: false, image: '🌸' },
+            { id: 4, title: 'أظرف قهوة مختصة (Zuw Drip)', store: 'زوُ Zuw Coffee', price: '6.500', category: 'coffee', phone: '+96890000000', rating: '4.9 ★ (210+)', delivery: 'جميع محافظات السلطنة 🇴🇲', distance: '1.2 كم', isTop: true, image: '☕' }
+        ];
+
+        function getDB() {
+            const data = localStorage.getItem('raff_db_v3');
+            return data ? JSON.parse(data) : initialProducts;
+        }
+
+        function saveDB(data) {
+            localStorage.setItem('raff_db_v3', JSON.stringify(data));
+        }
+
+        let selectedPlan = 'free';
+        let currentCategory = 'all';
+
+        function updateSpotsCounter() {
+            const remaining = Math.max(0, maxFreeSlots - freeSlotsUsed);
+            document.getElementById('spotsLeft').innerText = remaining + " مقاعد";
+            document.getElementById('modalSpotsLeft').innerText = remaining;
+
+            if (remaining === 0) {
+                document.getElementById('freePlanCard').style.display = 'none';
+                selectPlan('basic');
+            }
+        }
+
+        function selectPlan(plan) {
+            selectedPlan = plan;
+            document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
+            
+            if(plan === 'free') {
+                document.getElementById('freePlanCard').classList.add('selected');
+                document.getElementById('paymentArea').style.display = 'none';
+                document.getElementById('submitBtn').innerText = 'احصل على السنة المجانية وحجز الرف 🚀';
+            } else if(plan === 'basic') {
+                document.getElementById('basicPlanCard').classList.add('selected');
+                document.getElementById('paymentArea').style.display = 'block';
+                document.getElementById('submitBtn').innerText = 'دفع تجريبي (1.500) 💳';
+            } else if(plan === 'ai') {
+                document.getElementById('aiPlanCard').classList.add('selected');
+                document.getElementById('paymentArea').style.display = 'block';
+                document.getElementById('submitBtn').innerText = 'دفع تجريبي (3.500) 💳';
+            }
+        }
+
+        function selectPayMethod(method, el) {
+            document.querySelectorAll('.payment-box').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function renderMerchants() {
+            const db = getDB();
+            const container = document.getElementById('brandsContainer');
+            const storesMap = {};
+
+            db.forEach(p => {
+                if(!storesMap[p.store]) {
+                    storesMap[p.store] = { name: p.store, rating: p.rating, distance: p.distance, icon: p.image };
+                }
+            });
+
+            container.innerHTML = '';
+            Object.values(storesMap).forEach(s => {
+                const isImg = s.icon.startsWith('data:image');
+                const avatarContent = isImg ? `<img src="${s.icon}" alt="${s.name}">` : s.icon;
+
+                container.innerHTML += `
+                    <div class="brand-item" onclick="filterByStore('${s.name}')">
+                        <div class="brand-avatar">${avatarContent}</div>
+                        <div class="brand-name">${s.name}</div>
+                        <div class="brand-meta">
+                            <span>⭐ ${s.rating.split(' ')[0]}</span> • <span>${s.distance}</span>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderProducts() {
+            const db = getDB();
+            const topGrid = document.getElementById('topProductsGrid');
+            const allGrid = document.getElementById('allProductsGrid');
+
+            topGrid.innerHTML = '';
+            allGrid.innerHTML = '';
+
+            db.forEach(p => {
+                if (currentCategory !== 'all' && p.category !== currentCategory) return;
+                const cardHtml = createProductCardHtml(p);
+
+                if (p.isTop) topGrid.innerHTML += cardHtml;
+                allGrid.innerHTML += cardHtml;
+            });
+        }
+
+        function createProductCardHtml(p) {
+            const isImg = p.image.startsWith('data:image');
+            const imgContent = isImg ? `<img src="${p.image}" alt="${p.title}">` : p.image;
+            const isDigital = p.category === 'digital';
+
+            return `
+                <div class="product-card" data-title="${p.title}" data-store="${p.store}">
+                    <span class="product-badge">${isDigital ? 'رقمي ⚡' : 'منزلي 📦'}</span>
+                    <span class="distance-badge">📍 ${p.distance}</span>
+                    <div class="product-image">${imgContent}</div>
+                    <div class="product-details">
+                        <div>
+                            <div class="store-info">
+                                <span class="store-name">${p.store} ✓</span>
+                                <span class="rating">${p.rating}</span>
+                            </div>
+                            <div class="product-title">${p.title}</div>
+                            <div class="delivery-zone">🚚 التوصيل: ${p.delivery}</div>
+                        </div>
+                        <div class="product-bottom">
+                            <div class="product-price">
+                                <span>${p.price}</span>
+                                <svg class="omr-icon" style="color: var(--omr-red);"><use href="#omr-symbol"/></svg>
+                            </div>
+                            <button class="btn-order" onclick="sendWhatsAppOrder('${p.title}', '${p.store}', '${p.price}', '${p.phone}', '${p.delivery}')">
+                                ${isDigital ? 'تحميل ⚡' : 'طلب 💬'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function sendWhatsAppOrder(title, store, price, phone, delivery) {
+            const orderNum = 'RAFF-' + Math.floor(100000 + Math.random() * 900000);
+            const msg = `مرحباً متجر (${store}) 👋%0A` +
+                        `أرغب برفع طلب جديد عبر منصة *RAFF*:%0A%0A` +
+                        `📦 *المنتج:* ${title}%0A` +
+                        `💰 *السعر:* ${price} ريال عُماني%0A` +
+                        `🚚 *نطاق التوصيل:* ${delivery}%0A` +
+                        `🔢 *رقم الطلب:* ${orderNum}%0A%0A` +
+                        `يرجى تأكيد الاستلام والتفاصيل!`;
+            window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+        }
+
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('pImageBase64').value = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const store = document.getElementById('pStore').value;
+            const title = document.getElementById('pTitle').value;
+            let price = parseFloat(document.getElementById('pPrice').value).toFixed(3);
+            const phone = document.getElementById('pPhone').value;
+            const category = document.getElementById('pCategory').value;
+            const delivery = document.getElementById('pDelivery').value;
+            const imgBase64 = document.getElementById('pImageBase64').value || '📦';
+
+            if(selectedPlan === 'free') {
+                freeSlotsUsed++;
+                localStorage.setItem('raff_free_slots_used', freeSlotsUsed);
+                updateSpotsCounter();
+                alert(`مبروك متجر (${store})! تم حجز مقعدك وتفعيل الاشتراك المجاني للسنة الكاملة بنجاح 🎁!`);
+            } else {
+                alert(`هذه عملية دمج تجريبية! سيتم نقلك مستقبلاً لبوابة الدفع ثواني/OmanNet لإتمام سداد (${selectedPlan === 'basic' ? '1.500' : '3.500'}) ريال عُماني.`);
+            }
+
+            const db = getDB();
+            const newProduct = {
+                id: Date.now(),
+                title: title,
+                store: store,
+                price: price,
+                category: category,
+                phone: phone,
+                rating: '5.0 ★ (جديد)',
+                delivery: delivery,
+                distance: 'قريب منك',
+                isTop: false,
+                image: imgBase64
+            };
+
+            db.unshift(newProduct);
+            saveDB(db);
+
+            renderMerchants();
+            renderProducts();
+            closeModal('addModal');
+        }
+
+        function selectCategory(cat, el) {
+            document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+            currentCategory = cat;
+            renderProducts();
+        }
+
+        function filterAll() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            document.querySelectorAll('.product-card').forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                const store = card.getAttribute('data-store').toLowerCase();
+                card.style.display = (title.includes(query) || store.includes(query)) ? 'flex' : 'none';
+            });
+        }
+
+        function filterByStore(storeName) {
+            document.getElementById('searchInput').value = storeName;
+            filterAll();
+        }
+
+        function changeLocation() {
+            const loc = prompt("أدخل موقعك الجغرافي أو ولايتك لترتيب الرفوف القريبة منك:", "مسقط - السيب");
+            if(loc) document.getElementById('currentLocText').innerText = loc;
+        }
+
+        function openAddStoreModal() { document.getElementById('addModal').classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+        window.onload = function() {
+            updateSpotsCounter();
+            renderMerchants();
+            renderProducts();
+        };
+    </script>
+</body>
+</html>
