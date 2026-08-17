@@ -1,706 +1,137 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>منصة رَف | Raff Store</title>
-
-    <!-- Google Fonts: Cairo & Modern UI Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --brand-primary: #008374;
-            --brand-accent: #FF5252;
-            --brand-gold: #FFB300;
-            --bg-app: #F8F9FA;
-            --surface-white: #FFFFFF;
-            --text-main: #1C1E21;
-            --text-sub: #65676B;
-            --border-color: #E4E6EB;
-            --radius-lg: 18px;
-            --radius-md: 12px;
-            --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.05);
-            --omr-red: #8B0000;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background-color: var(--bg-app);
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-        }
-
-        .app-container {
-            width: 100%;
-            max-width: 480px; /* محاكاة قياس الهاتف بالضبط */
-            background: var(--surface-white);
-            min-height: 100vh;
-            padding-bottom: 90px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
-            position: relative;
-        }
-
-        /* Top Header & Location Select */
-        .app-header {
-            padding: 12px 16px 8px 16px;
-            background: var(--surface-white);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .location-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
-        }
-
-        .location-info {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-        }
-
-        .location-title {
-            font-size: 11px;
-            color: var(--text-sub);
-            font-weight: 600;
-        }
-
-        .location-select-btn {
-            font-size: 14px;
-            font-weight: 800;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* Search Input Section */
-        .search-wrapper {
-            position: relative;
-            margin-bottom: 12px;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 12px 42px 12px 16px;
-            background: #F0F2F5;
-            border: none;
-            border-radius: 25px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-main);
-            outline: none;
-        }
-
-        .search-input::placeholder {
-            color: #8D949E;
-        }
-
-        .search-icon {
-            position: absolute;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 16px;
-            color: #8D949E;
-        }
-
-        /* Banners Sliders (الخصومات والعروض) */
-        .offers-section {
-            padding: 0 16px;
-            margin-bottom: 18px;
-        }
-
-        .offers-scroll {
-            display: flex;
-            gap: 12px;
-            overflow-x: auto;
-            scrollbar-width: none;
-            padding-bottom: 4px;
-        }
-
-        .offers-scroll::-webkit-scrollbar { display: none; }
-
-        .offer-card {
-            min-width: 140px;
-            height: 110px;
-            border-radius: var(--radius-lg);
-            padding: 12px;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            overflow: hidden;
-            flex-shrink: 0;
-            cursor: pointer;
-        }
-
-        .offer-card.bg-1 { background: linear-gradient(135deg, #FF512F 0%, #DD2476 100%); }
-        .offer-card.bg-2 { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
-        .offer-card.bg-3 { background: linear-gradient(135deg, #FFB300 0%, #F77737 100%); }
-
-        .offer-badge {
-            background: rgba(255, 255, 255, 0.25);
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 10px;
-            font-weight: 800;
-            width: fit-content;
-            backdrop-filter: blur(4px);
-        }
-
-        .offer-title {
-            font-size: 14px;
-            font-weight: 900;
-            line-height: 1.2;
-        }
-
-        /* Circle Categories Grid/Scroll */
-        .section-header {
-            padding: 0 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .section-title {
-            font-size: 16px;
-            font-weight: 800;
-            color: var(--text-main);
-        }
-
-        .categories-scroll {
-            display: flex;
-            gap: 14px;
-            overflow-x: auto;
-            padding: 0 16px;
-            margin-bottom: 20px;
-            scrollbar-width: none;
-        }
-        .categories-scroll::-webkit-scrollbar { display: none; }
-
-        .cat-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            min-width: 65px;
-            cursor: pointer;
-        }
-
-        .cat-icon-box {
-            width: 60px;
-            height: 60px;
-            background: #F0F2F5;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            transition: 0.2s;
-        }
-
-        .cat-item.active .cat-icon-box {
-            background: rgba(0, 131, 116, 0.12);
-            border: 2px solid var(--brand-primary);
-        }
-
-        .cat-name {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--text-main);
-            text-align: center;
-        }
-
-        /* Quick Filter Badges */
-        .filters-scroll {
-            display: flex;
-            gap: 8px;
-            padding: 0 16px;
-            margin-bottom: 16px;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-        .filters-scroll::-webkit-scrollbar { display: none; }
-
-        .filter-btn {
-            background: #F0F2F5;
-            border: 1px solid var(--border-color);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--text-sub);
-            white-space: nowrap;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .filter-btn.active {
-            background: var(--text-main);
-            color: white;
-            border-color: var(--text-main);
-        }
-
-        /* Stores / Products List (App Style) */
-        .stores-list {
-            padding: 0 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .store-card {
-            background: var(--surface-white);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-            box-shadow: var(--shadow-card);
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .store-cover {
-            width: 100%;
-            height: 140px;
-            background-color: #EEE;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .like-btn {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(255, 255, 255, 0.9);
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-        }
-
-        .discount-tag {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: #22C55E;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 800;
-        }
-
-        .store-details {
-            padding: 12px;
-        }
-
-        .store-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 4px;
-        }
-
-        .store-title {
-            font-size: 15px;
-            font-weight: 800;
-            color: var(--text-main);
-        }
-
-        .store-rating {
-            font-size: 12px;
-            font-weight: 800;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 2px;
-        }
-
-        .store-sub {
-            font-size: 12px;
-            color: var(--text-sub);
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .store-footer {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--text-sub);
-            border-top: 1px dashed var(--border-color);
-            padding-top: 8px;
-        }
-
-        .delivery-time {
-            color: var(--brand-primary);
-            background: rgba(0, 131, 116, 0.08);
-            padding: 2px 6px;
-            border-radius: 6px;
-        }
-
-        .omr-symbol-svg {
-            display: inline-block;
-            width: 14px;
-            height: 14px;
-            vertical-align: middle;
-            color: var(--omr-red);
-        }
-
-        /* Bottom Nav Bar */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 480px;
-            background: var(--surface-white);
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-around;
-            padding: 8px 0 12px 0;
-            z-index: 200;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--text-sub);
-            cursor: pointer;
-        }
-
-        .nav-item.active {
-            color: var(--brand-primary);
-        }
-
-        .nav-icon { font-size: 18px; }
-
-        /* Modal Location Selector */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-            display: none;
-            justify-content: center;
-            align-items: flex-end;
-        }
-
-        .modal-sheet {
-            background: white;
-            width: 100%;
-            max-width: 480px;
-            border-radius: 20px 20px 0 0;
-            padding: 20px;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .sheet-title {
-            font-size: 16px;
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
-
-        .wilaya-select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            outline: none;
-            font-family: 'Cairo';
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intelligence Designed To Evolve | متجر رف Raff Store</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://db.onlinewebfonts.com/c/8cb707a9b8a73f8a7403336b861c3074?family=BubbledotICG-FinePos" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Video Background -->
+  <div class="bg">
+    <video class="bg-video" autoplay muted loop playsinline>
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4" type="video/mp4" />
+    </video>
+  </div>
 
-    <!-- SVG Icon for Oman Rial Official Symbol -->
-    <svg style="display: none;">
-        <symbol id="omr-symbol" viewBox="0 0 100 80">
-            <path d="M 30,10 C 25,10 20,20 20,35 C 20,50 35,50 50,35 C 65,20 75,10 85,10 C 90,10 95,15 95,22 C 95,35 70,35 50,45 C 30,55 10,65 5,75" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
-            <line x1="10" y1="40" x2="90" y2="40" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
-            <line x1="15" y1="58" x2="85" y2="58" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
-        </symbol>
-    </svg>
-
-    <div class="app-container">
-
-        <!-- Header Location & Search -->
-        <div class="app-header">
-            <div class="location-bar">
-                <div class="location-info" onclick="openLocationModal()">
-                    <span style="font-size: 18px;">📍</span>
-                    <div>
-                        <div class="location-title">التوصيل إلى</div>
-                        <div class="location-select-btn">
-                            <span id="selectedLocationText">مسقط، السيب</span> ▾
-                        </div>
-                    </div>
-                </div>
-                <div style="font-size: 20px;">🔔</div>
-            </div>
-
-            <!-- Search Bar -->
-            <div class="search-wrapper">
-                <span class="search-icon">🔍</span>
-                <input type="text" id="searchInput" class="search-input" onkeyup="filterStores()" placeholder="ابحث عن متجر، كيك، قهوة، أو خدمة...">
-            </div>
-        </div>
-
-        <!-- Offers Banners Carousel -->
-        <div class="offers-section">
-            <div class="offers-scroll">
-                <div class="offer-card bg-1">
-                    <span class="offer-badge">أول طلب 🎁</span>
-                    <div class="offer-title">خصم 20% <br>على المخبوزات</div>
-                </div>
-                <div class="offer-card bg-2">
-                    <span class="offer-badge">عرض خاص 🔥</span>
-                    <div class="offer-title">توصيل مجاني <br>في ولاية السيب</div>
-                </div>
-                <div class="offer-card bg-3">
-                    <span class="offer-badge">PRO ⚡</span>
-                    <div class="offer-title">خصومات تصل <br>إلى 30%</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Categories Icons -->
-        <div class="section-header">
-            <div class="section-title">الأقسام</div>
-        </div>
-
-        <div class="categories-scroll">
-            <div class="cat-item active" onclick="filterCat('all', this)">
-                <div class="cat-icon-box">✨</div>
-                <div class="cat-name">الكل</div>
-            </div>
-            <div class="cat-item" onclick="filterCat('bakery', this)">
-                <div class="cat-icon-box">🍰</div>
-                <div class="cat-name">مخبوزات</div>
-            </div>
-            <div class="cat-item" onclick="filterCat('coffee', this)">
-                <div class="cat-icon-box">☕</div>
-                <div class="cat-name">مشروبات</div>
-            </div>
-            <div class="cat-item" onclick="filterCat('digital', this)">
-                <div class="cat-icon-box">💻</div>
-                <div class="cat-name">رقمية</div>
-            </div>
-            <div class="cat-item" onclick="filterCat('perfume', this)">
-                <div class="cat-icon-box">🌸</div>
-                <div class="cat-name">عطور</div>
-            </div>
-            <div class="cat-item" onclick="filterCat('crafts', this)">
-                <div class="cat-icon-box">🎨</div>
-                <div class="cat-name">مشغولات</div>
-            </div>
-        </div>
-
-        <!-- Filter Badges -->
-        <div class="filters-scroll">
-            <div class="filter-btn active">⚡ الترتيب حسب</div>
-            <div class="filter-btn">🔥 عروض وخصومات</div>
-            <div class="filter-btn">⭐ تقييم +4.5</div>
-            <div class="filter-btn">🚀 توصيل سريع</div>
-        </div>
-
-        <!-- Stores / Items List -->
-        <div class="section-header">
-            <div class="section-title" id="listTitle">جميع المتاجر والرفوف</div>
-        </div>
-
-        <div class="stores-list" id="storesList">
-            <!-- Stores Rendered dynamically -->
-        </div>
-
-        <!-- Bottom Mobile Navigation -->
-        <div class="bottom-nav">
-            <div class="nav-item active">
-                <span class="nav-icon">🏠</span>
-                <span>الرئيسية</span>
-            </div>
-            <div class="nav-item">
-                <span class="nav-icon">🏷️</span>
-                <span>العروض</span>
-            </div>
-            <div class="nav-item">
-                <span class="nav-icon">🛍️</span>
-                <span>طلباتي</span>
-            </div>
-            <div class="nav-item">
-                <span class="nav-icon">👤</span>
-                <span>حسابي</span>
-            </div>
-        </div>
-
+  <!-- Dynamic Announcement Ticker Bar (عروض التجار) -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="ticker-wrapper" id="tickerWrapper">
+      <!-- يتم تحميل العروض والتخفيضات والتوصيل المجاني المضافة من قبل التجار هنا تلقائياً -->
     </div>
+  </div>
 
-    <!-- Location Picker Modal (جميع محافظات وولايات عمان) -->
-    <div class="modal-overlay" id="locationModal">
-        <div class="modal-sheet">
-            <div class="sheet-title">اختر المحافظة والولاية 🇴🇲</div>
-            
-            <label style="font-size: 12px; font-weight:700;">المحافظة:</label>
-            <select id="governorateSelect" class="wilaya-select" onchange="updateWilayas()">
-                <option value="مسقط">محافظة مسقط</option>
-                <option value="ظفار">محافظة ظفار</option>
-                <option value="مسندم">محافظة مسندم</option>
-                <option value="الداخلية">محافظة الداخلية</option>
-                <option value="شمال الباطنة">محافظة شمال الباطنة</option>
-                <option value="جنوب الباطنة">محافظة جنوب الباطنة</option>
-                <option value="جنوب الشرقية">محافظة جنوب الشرقية</option>
-                <option value="شمال الشرقية">محافظة شمال الشرقية</option>
-                <option value="الظاهرة">محافظة الظاهرة</option>
-                <option value="البريمي">محافظة البريمي</option>
-                <option value="الوسطى">محافظة الوسطى</option>
-            </select>
+  <div class="page">
+    <!-- Header -->
+    <header class="header anim">
+      <div class="logo-btn">
+        <img src="assets/logo.webp" alt="" width="52" height="52" class="logo-img" />
+      </div>
 
-            <label style="font-size: 12px; font-weight:700;">الولاية:</label>
-            <select id="wilayaSelect" class="wilaya-select">
-                <!-- Populated automatically -->
-            </select>
+      <nav class="nav-pill">
+        <a href="#home" class="nav-link active">الرئيسية</a>
+        <a href="#sections" class="nav-link">الأقسام</a>
+        <a href="#pricing" class="nav-link">الاشتراكات</a>
+        <a href="#contact" class="nav-link">تواصل معنا</a>
+      </nav>
 
-            <button onclick="saveLocation()" style="width: 100%; padding: 12px; background: var(--brand-primary); color: white; border: none; border-radius: 12px; font-weight: 800; font-family: 'Cairo'; margin-top: 10px;">تأكيد الموقع 📍</button>
+      <!-- Oman Location Picker -->
+      <div class="location-picker">
+        <button class="sign-in-pill" id="locationBtn">
+          <i class="fa-solid fa-location-dot"></i>
+          <span id="currentLocation">حدد موقعك</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="hero">
+      <div class="trust-row anim" style="--d: 0.05s">
+        <div class="trust-avatars">
+          <div class="avatar a1"><div class="avatar-inner"><i class="fa-brands fa-microsoft"></i></div></div>
+          <div class="avatar a2"><div class="avatar-inner"><i class="fa-brands fa-amazon"></i></div></div>
+          <div class="avatar a3"><div class="avatar-inner"><i class="fa-brands fa-google"></i></div></div>
         </div>
+        <div class="trust-pill">
+          <span>أكثر من +2000 متجر شريك</span>
+        </div>
+      </div>
+
+      <h1 class="headline">
+        <span class="anim" style="--d: 0.12s">Intelligence</span>
+        <span class="anim" style="--d: 0.3s">Designed To Evolve</span>
+      </h1>
+
+      <p class="subhead anim" style="--d: 0.28s">
+        منصة رف تجمع لك أفضل المتاجر المحلية، المخبوزات، الأزياء، الكماليات، والخدمات الرقمية في مكان واحد.
+      </p>
+
+      <div class="cta-wrapper anim" style="--d: 0.4s">
+        <a href="#sections" class="cta-btn">تصفح المتاجر</a>
+      </div>
+    </main>
+
+    <!-- Stats Footer -->
+    <footer class="stats-footer">
+      <div class="stat-item anim" style="--d: 0.5s">
+        <span class="stat-icon">&lt;</span>
+        <div class="stat-value" data-target="120" data-suffix="ms">0</div>
+        <span class="stat-label">زمن الاستجابة</span>
+      </div>
+      <div class="stat-item anim" style="--d: 0.58s">
+        <span class="stat-icon">%</span>
+        <div class="stat-value" data-target="99.99" data-decimals="2" data-suffix="%">0</div>
+        <span class="stat-label">جاهزية المنصة</span>
+      </div>
+      <div class="stat-item anim" style="--d: 0.66s">
+        <span class="stat-icon">*</span>
+        <div class="stat-value" data-target="24" data-suffix="/7">0</div>
+        <span class="stat-label">عمل مستمر</span>
+      </div>
+      <div class="stat-item anim" style="--d: 0.74s">
+        <span class="stat-icon">#</span>
+        <div class="stat-value" data-target="2.4" data-decimals="1" data-suffix="M">0</div>
+        <span class="stat-label">عملية تسوق</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Sections Showcase (Adidas/SHEIN Grid Dynamic Style) -->
+  <section id="sections" class="catalog-section">
+    <h2 class="section-title">أقسام المتجر</h2>
+    <div class="grid-container" id="categoryGrid">
+      <!-- Dynamic Categories Loaded via JS -->
     </div>
+  </section>
 
-    <script>
-        // سلطنة عمان - المحافظات والولايات بالكامل
-        const omanData = {
-            "مسقط": ["السيب", "بوشر", "مطرح", "العامرات", "مسقط", "قريات"],
-            "ظفار": ["صلالة", "طاقة", "مرباط", "رخيوت", "ثمريت", "ضلكوت", "طوي أعتير", "مقشن", "شليم وجزر الحلانيات", "سدح"],
-            "مسندم": ["خصب", "دبا", "بخاء", "مدحاء"],
-            "الداخلية": ["نزوى", "بهلاء", "منح", "الحمراء", "أدم", "أزكي", "سمائل", "بدبد"],
-            "شمال الباطنة": ["صحار", "صحم", "الخابورة", "السويق", "لوى", "شناص"],
-            "جنوب الباطنة": ["الرستاق", "العوابي", "نخل", "وادي المعاول", "بركاء", "المصنعة"],
-            "جنوب الشرقية": ["صور", "الكامل والوافي", "جعلان بني بو حسن", "جعلان بني بو علي", "مصيرة"],
-            "شمال الشرقية": ["إبراء", "المضيبي", "بدية", "القابل", "وادي بني خالد", "دماء والطائيين"],
-            "الظاهرة": ["عبري", "ينقل", "ضنك"],
-            "البريمي": ["البريمي", "محضة", "السنينة"],
-            "الوسطى": ["هيماء", "محوت", "الدقم", "الجازر"]
-        };
+  <!-- Pricing Section Container -->
+  <section id="pricing" class="pricing-container"></section>
 
-        // المتاجر مع تطبيق رمز الريال العماني والعروض
-        const stores = [
-            { id: 1, name: "بيكس | Bakes", sub: "كيك، مخبوزات وسينابون طازج", category: "bakery", rating: "4.9 (120+)", time: "20-30 دقيقة", fee: "0.500", discount: "خصم 20%", img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500", phone: "+96890000000" },
-            { id: 2, name: "زوُ كافيه | Zuw Coffee", sub: "قهوة مختصة وأظرف تقطير", category: "coffee", rating: "4.8 (210+)", time: "15-25 دقيقة", fee: "0.400", discount: "أول طلب خصم 15%", img: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=500", phone: "+96890000000" },
-            { id: 3, name: "رف رقمي | Raff Digital", sub: "قوالب تصميم ومذكرات تنظيم PDF", category: "digital", rating: "5.0 (85+)", time: "تسليم آلي ⚡", fee: "0.000", discount: "تنزيل فوري", img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500", phone: "+96890000000" },
-            { id: 4, name: "أنفاس عُمان للطيوب", sub: "بخور لبان حوجري وعطور حصرية", category: "perfume", rating: "4.7 (50+)", time: "30-45 دقيقة", fee: "0.800", discount: "توصيل مجاني", img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500", phone: "+96890000000" }
-        ];
+  <!-- Location Picker Modal -->
+  <div class="modal-overlay" id="locationModal">
+    <div class="modal-content">
+      <h3>اختر المحافظة والولاية</h3>
+      <button id="geoLocateBtn" class="geo-btn"><i class="fa-solid fa-crosshairs"></i> تحديد موقعي تلقائياً</button>
+      <div class="select-group">
+        <select id="governorateSelect">
+          <option value="">اختر المحافظة...</option>
+        </select>
+        <select id="wilayatSelect" disabled>
+          <option value="">اختر الولاية...</option>
+        </select>
+      </div>
+      <button id="saveLocationBtn" class="cta-btn full-width">تأكيد الموقع</button>
+    </div>
+  </div>
 
-        let activeCategory = 'all';
-
-        function renderStores(data) {
-            const container = document.getElementById('storesList');
-            container.innerHTML = '';
-
-            data.forEach(s => {
-                container.innerHTML += `
-                    <div class="store-card" onclick="openStoreWhatsApp('${s.name}', '${s.phone}')">
-                        <div class="store-cover" style="background-image: url('${s.img}');">
-                            <div class="like-btn">🤍</div>
-                            ${s.discount ? `<div class="discount-tag">${s.discount}</div>` : ''}
-                        </div>
-                        <div class="store-details">
-                            <div class="store-header">
-                                <div class="store-title">${s.name}</div>
-                                <div class="store-rating">⭐ ${s.rating}</div>
-                            </div>
-                            <div class="store-sub">${s.sub}</div>
-                            <div class="store-footer">
-                                <span class="delivery-time">⏱️ ${s.time}</span>
-                                <span>🚚 توصيل: ${s.fee} <svg class="omr-symbol-svg"><use href="#omr-symbol"/></svg></span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function filterCat(cat, el) {
-            document.querySelectorAll('.cat-item').forEach(c => c.classList.remove('active'));
-            el.classList.add('active');
-            activeCategory = cat;
-
-            if(cat === 'all') {
-                renderStores(stores);
-            } else {
-                renderStores(stores.filter(s => s.category === cat));
-            }
-        }
-
-        function filterStores() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = stores.filter(s => s.name.toLowerCase().includes(query) || s.sub.toLowerCase().includes(query));
-            renderStores(filtered);
-        }
-
-        function openLocationModal() {
-            document.getElementById('locationModal').style.display = 'flex';
-            updateWilayas();
-        }
-
-        function updateWilayas() {
-            const gov = document.getElementById('governorateSelect').value;
-            const wilayaSelect = document.getElementById('wilayaSelect');
-            wilayaSelect.innerHTML = '';
-            omanData[gov].forEach(w => {
-                wilayaSelect.innerHTML += `<option value="${w}">${w}</option>`;
-            });
-        }
-
-        function saveLocation() {
-            const gov = document.getElementById('governorateSelect').value;
-            const wil = document.getElementById('wilayaSelect').value;
-            document.getElementById('selectedLocationText').innerText = `${gov}، ${wil}`;
-            document.getElementById('locationModal').style.display = 'none';
-        }
-
-        function openStoreWhatsApp(name, phone) {
-            const msg = `مرحباً متجر (${name}) 👋%0Aأنا قادم من تطبيق *رَف* وأود استعراض قائمة المنتجات والعروض!`;
-            window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
-        }
-
-        // Initialize
-        renderStores(stores);
-    </script>
+  <script src="main.js"></script>
 </body>
 </html>
