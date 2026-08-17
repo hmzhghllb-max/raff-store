@@ -3,20 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Raff | منصة المتاجر المحلية</title>
+  <title>Raff | دليل ومنصة المتاجر المحلية</title>
   
-  <!-- Fonts & Icons -->
+  <!-- Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lateef:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link href="https://db.onlinewebfonts.com/c/8cb707a9b8a73f8a7403336b861c3074?family=BubbledotICG-FinePos" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lateef:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-  
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- Background Video -->
+  <!-- Background Video Overlay -->
   <div class="bg">
     <video class="bg-video" autoplay muted loop playsinline>
       <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4" type="video/mp4" />
@@ -24,56 +22,44 @@
     <div class="overlay-dark"></div>
   </div>
 
-  <!-- Dynamic Announcement Bar -->
+  <!-- Announcement Ticker -->
   <div class="announcement-bar">
-    <div class="ticker-wrapper" id="tickerWrapper"></div>
+    <div class="ticker-wrapper" id="tickerWrapper">
+      <span class="ticker-item">✨ مرحباً بكم في منصة Raff - وجهتك الأولى لإكتشاف أفضل المتاجر والمشاريع المحلية</span>
+      <span class="ticker-item">🛍️ هل تملك مشروعاً؟ انضم إلينا اليوم وعزز وصولك للزبائن</span>
+    </div>
   </div>
 
-  <!-- Header Navigation -->
+  <!-- Header Section -->
   <header class="header">
-    <div class="logo-btn">
-      <img src="assets/logo.webp" alt="Raff" class="logo-img" onerror="this.src='https://via.placeholder.com/52/C57D5A/FFFFFF?text=Raff'" />
+    <div class="logo-area">
+      <span class="logo-text">Raff</span>
     </div>
 
     <nav class="nav-pill">
       <a href="#hero" class="nav-link active">الرئيسية</a>
-      <a href="#categories" class="nav-link">الأقسام</a>
+      <a href="#stores" class="nav-link">المتاجر</a>
       <a href="#products" class="nav-link">المنتجات</a>
       <a href="#pricing" class="nav-link">الاشتراكات</a>
     </nav>
 
     <div class="header-actions">
-      <!-- Login Button -->
-      <button class="action-pill login-btn" id="loginBtn">
-        <i class="fa-solid fa-user icon-gold"></i>
+      <button class="action-pill gold-btn" id="joinMerchantBtn">
+        <i class="fa-solid fa-store"></i>
+        <span>سجّل متجرك</span>
+      </button>
+      <button class="action-pill" id="loginBtn">
+        <i class="fa-solid fa-user"></i>
         <span>تسجيل الدخول</span>
-      </button>
-
-      <!-- Location Selector -->
-      <button class="action-pill" id="locationBtn">
-        <i class="fa-solid fa-location-dot icon-gold"></i>
-        <span id="currentLocation">تحديد الموقع</span>
-      </button>
-
-      <!-- Cart Drawer Trigger -->
-      <button class="action-pill cart-btn" id="cartBtn">
-        <i class="fa-solid fa-bag-shopping"></i>
-        <span class="cart-count" id="cartCount">0</span>
       </button>
     </div>
   </header>
 
   <!-- Hero Section -->
   <section id="hero" class="hero">
-    <div class="trust-row">
-      <div class="trust-avatars">
-        <div class="avatar"><div class="avatar-inner"><i class="fa-brands fa-microsoft"></i></div></div>
-        <div class="avatar"><div class="avatar-inner"><i class="fa-brands fa-amazon"></i></div></div>
-        <div class="avatar"><div class="avatar-inner"><i class="fa-brands fa-google"></i></div></div>
-      </div>
-      <div class="trust-pill">
-        <span>منصة تجمع أكثر من +2000 متجر مشروع محلي</span>
-      </div>
+    <div class="trust-badge">
+      <i class="fa-solid fa-shield-halved icon-gold"></i>
+      <span>المنصة المعتمدة للربط بالمتاجر والمشاريع العُمانية</span>
     </div>
 
     <h1 class="headline">
@@ -82,38 +68,41 @@
     </h1>
 
     <p class="subhead">
-      منصة **Raff** تجمع لك المخبوزات، الأزياء العُمانية، أدوات القهوة والماتشا، والخدمات الرقمية من أفضل المشاريع المحلية.
+      استكشف أحدث المخبوزات، الأزياء، أدوات القهوة، والمنتجات المبتكرة وتواصل مع التاجر مباشرة.
     </p>
 
-    <!-- Interactive Search Bar -->
+    <!-- Search Box -->
     <div class="search-box">
       <i class="fa-solid fa-magnifying-glass search-icon"></i>
-      <input type="text" id="searchInput" placeholder="ابحث عن مخبوزات، عبايات، ماتشا، أو خدمات رقمية..." />
+      <input type="text" id="searchInput" placeholder="ابحث عن متجر، كيكة، عباية، ماتشا، أو خدمات رقمية..." />
     </div>
   </section>
 
-  <!-- Catalog Categories Section -->
-  <section id="categories" class="main-section">
+  <!-- Stores Section -->
+  <section id="stores" class="main-section">
     <div class="section-header">
-      <h2>أقسام متجر Raff</h2>
-      <p>تصفح التشكيلات الحصرية حسب التصنيف (اضغط للانتقال للمنتجات)</p>
+      <span class="badge-gold">مشاريع تميزت معنا</span>
+      <h2>أبرز المتاجر على منصة Raff</h2>
+      <p>اضغط على المتجر لتصفح كافة منتجاته</p>
     </div>
-
-    <div class="categories-grid" id="categoriesGrid"></div>
+    <div class="stores-grid" id="storesGrid"></div>
   </section>
 
-  <!-- Products Showcase Section -->
+  <!-- Products Section -->
   <section id="products" class="main-section">
     <div class="section-header">
-      <h2>أحدث المنتجات والعروض</h2>
-      <div class="filter-tabs" id="filterTabs">
-        <button class="tab-btn active" data-filter="all">الكل</button>
-        <button class="tab-btn" data-filter="bakery">مخبوزات وحلويات</button>
-        <button class="tab-btn" data-filter="fashion">أزياء وملابس</button>
-        <button class="tab-btn" data-filter="accessories">كماليات</button>
-        <button class="tab-btn" data-filter="coffee">قهوة وماتشا</button>
-        <button class="tab-btn" data-filter="cups">أكواب وفناجين</button>
-        <button class="tab-btn" data-filter="digital">خدمات رقمية</button>
+      <h2>دليل المنتجات والعروض</h2>
+      <p>اطلب مباشرة من صاحب مشروعك المفضل</p>
+      
+      <div class="filter-controls">
+        <div class="filter-tabs" id="filterTabs">
+          <button class="tab-btn active" data-filter="all">الكل</button>
+          <button class="tab-btn" data-filter="bakery">مخبوزات وحلويات</button>
+          <button class="tab-btn" data-filter="fashion">أزياء وملابس</button>
+          <button class="tab-btn" data-filter="coffee">قهوة وماتشا</button>
+          <button class="tab-btn" data-filter="accessories">كماليات</button>
+          <button class="tab-btn" data-filter="digital">خدمات رقمية</button>
+        </div>
       </div>
     </div>
 
@@ -121,174 +110,98 @@
   </section>
 
   <!-- Pricing Section -->
-  <section id="pricing" class="main-section pricing-bg">
+  <section id="pricing" class="main-section">
     <div class="section-header">
       <span class="badge-gold">خطط العضوية والاشتراكات</span>
-      <h2>اختر الباقة المناسبة للتمتع بمميزات منصة Raff</h2>
-      <p>دفع شفاف واشتراكات مخصصة للمتسوقين والتجار</p>
+      <h2>انضم كتاجر واستفد من انتشار منصة Raff</h2>
     </div>
 
     <div class="pricing-grid">
-      <!-- Standard Plan -->
       <div class="pricing-card">
-        <h3 class="plan-title">الباقة الأساسية (Standard)</h3>
-        <p class="plan-desc">الخيار المثالي للتسوق اليومي وسريع الاستجابة.</p>
+        <h3 class="plan-title">باقة التجار (Standard)</h3>
+        <p class="plan-desc">عرض منتجاتك وتلقي الطلبات مباشرة على الواتساب.</p>
         <div class="price-box">
-          <div class="price-row">
-            <span>الاشتراك الشهري:</span>
-            <span class="price-val">0.900 <small>ر.ع / شهرياً</small></span>
-          </div>
-          <div class="price-row highlight">
-            <span>الاشتراك السنوي:</span>
-            <div>
-              <span class="old-price">10.800 ر.ع</span>
-              <span class="price-val gold">8.200 <small>ر.ع / سنوياً</small></span>
-            </div>
-          </div>
+          <span class="price-val gold">0.900 <small>ر.ع / شهرياً</small></span>
         </div>
         <ul class="features-list">
-          <li><i class="fa-solid fa-check"></i> وصول كامل لجميع المحلات والسكاشن</li>
-          <li><i class="fa-solid fa-check"></i> تتبع حي ومباشر للشحنات في ولايات السلطنة</li>
-          <li><i class="fa-solid fa-check"></i> الاستفادة من خصومات التجار وعروضهم</li>
+          <li><i class="fa-solid fa-check"></i> صفحة خاصة لمتجرك داخل Raff</li>
+          <li><i class="fa-solid fa-check"></i> تحويل مباشر لزبائنك عبر الواتساب/الموقع</li>
+          <li><i class="fa-solid fa-check"></i> التحكم الكامل بأسعارك وطرق الشحن الخاصة بك</li>
         </ul>
-        <button class="plan-btn">اشترك الآن</button>
+        <button class="plan-btn" onclick="openAuthModal('merchant')">اشترك كتاجر</button>
       </div>
 
-      <!-- VIP Pro Plan -->
       <div class="pricing-card featured">
-        <div class="top-badge">الأكثر طلباً وتوفيراً</div>
-        <h3 class="plan-title">الباقة المتقدمة (VIP Pro)</h3>
-        <p class="plan-desc">تجربة تسوق فاخرة وأولوية في معالجة الشحنات.</p>
+        <div class="top-badge">الأكثر طلباً</div>
+        <h3 class="plan-title">الباقة الفائقة (Pro Partner)</h3>
+        <p class="plan-desc">تسويق مكثف وأولوية ظهور في أعلى المنصة.</p>
         <div class="price-box">
-          <div class="price-row">
-            <span>الاشتراك الشهري:</span>
-            <span class="price-val">1.200 <small>ر.ع / شهرياً</small></span>
-          </div>
-          <div class="price-row highlight">
-            <span>الاشتراك السنوي:</span>
-            <div>
-              <span class="old-price">14.400 ر.ع</span>
-              <span class="price-val gold">11.400 <small>ر.ع / سنوياً</small></span>
-            </div>
-          </div>
+          <span class="price-val gold">1.200 <small>ر.ع / شهرياً</small></span>
         </div>
         <ul class="features-list">
-          <li><i class="fa-solid fa-check"></i> كافة مميزات الباقة الأساسية</li>
-          <li><i class="fa-solid fa-check"></i> شحن مجاني تلقائي فور تحديد التاجر للعرض</li>
-          <li><i class="fa-solid fa-check"></i> أولوية تحضير طلبات الكيك والمخورات والخدمات</li>
-          <li><i class="fa-solid fa-check"></i> دعم VIP متواصل 24/7</li>
+          <li><i class="fa-solid fa-check"></i> جميع مميزات الباقة الأساسية</li>
+          <li><i class="fa-solid fa-check"></i> أولوية الظهور في الصفحة الرئيسية والشريط الإعلاني</li>
+          <li><i class="fa-solid fa-check"></i> إمكانية إضافة عروض وتخفيضات موسمية</li>
         </ul>
-        <button class="plan-btn gold-btn">اشترك الآن</button>
+        <button class="plan-btn gold-btn" onclick="openAuthModal('merchant')">اشترك الآن</button>
       </div>
     </div>
   </section>
 
-  <!-- Payment Methods Accepted Footer Banner -->
-  <section class="payment-methods-section">
-    <span>وسائل الدفع المقبولة والآمنة:</span>
-    <div class="payment-icons">
-      <i class="fa-brands fa-cc-visa" title="Visa"></i>
-      <i class="fa-brands fa-cc-mastercard" title="Mastercard"></i>
-      <i class="fa-brands fa-apple-pay" title="Apple Pay"></i>
-      <i class="fa-solid fa-wallet" title="Thawani / OmanNet"></i>
-      <i class="fa-solid fa-money-bill-transfer" title="الدفع عند الاستلام"></i>
-    </div>
-  </section>
-
-  <!-- Stats Footer -->
-  <footer class="stats-footer">
-    <div class="stat-item">
-      <span class="stat-icon">&lt;</span>
-      <div class="stat-value" data-target="120" data-suffix="ms">0</div>
-      <span class="stat-label">سرعة الاستجابة</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-icon">%</span>
-      <div class="stat-value" data-target="99.99" data-decimals="2" data-suffix="%">0</div>
-      <span class="stat-label">جاهزية المنصة</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-icon">*</span>
-      <div class="stat-value" data-target="24" data-suffix="/7">0</div>
-      <span class="stat-label">خدمة مستمرة</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-icon">#</span>
-      <div class="stat-value" data-target="2.4" data-decimals="1" data-suffix="M">0</div>
-      <span class="stat-label">طلب مكتمل</span>
-    </div>
+  <!-- Footer Shipping Disclaimer -->
+  <footer class="footer-disclaimer">
+    <p><i class="fa-solid fa-truck-fast icon-gold"></i> <strong>تنويه بشأن الشحن والتوصيل:</strong> منصة Raff هي دليل إعلاني وتسويقي للمتاجر. رسوم وسياسات الشحن يتم تحديدها وتحصيلها مباشرة من قبل المتجر المورد أو شركة الشحن الخاصة به.</p>
   </footer>
 
-  <!-- Login / Register Modal (للزبائن والتجار) -->
-  <div class="modal-overlay" id="loginModal">
+  <!-- Direct Order Modal -->
+  <div class="modal-overlay" id="orderModal">
     <div class="modal-card">
-      <button class="close-modal" id="closeLoginModal">&times;</button>
+      <button class="close-modal" onclick="closeOrderModal()">&times;</button>
+      <h3 id="modalProdTitle">تفاصيل الطلب</h3>
+      <div class="order-modal-body">
+        <img id="modalProdImg" src="" alt="" class="modal-prod-img" />
+        <p id="modalProdVendor" class="modal-vendor"></p>
+        <p id="modalProdPrice" class="modal-price"></p>
+        
+        <div class="note-area">
+          <label for="orderNoteInput">ملاحظات الطلب (مقاس، كتابة على كيكة، تفاصيل خاصة):</label>
+          <textarea id="orderNoteInput" rows="3" placeholder="اكتب ملاحظاتك للتاجر هنا..."></textarea>
+        </div>
+
+        <button class="whatsapp-direct-btn" id="sendWhatsAppBtn">
+          <i class="fa-brands fa-whatsapp"></i> الطلب المباشر عبر واتساب المتجر
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Auth Modal -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-card">
+      <button class="close-modal" onclick="closeAuthModal()">&times;</button>
       <div class="auth-tabs">
-        <button class="auth-tab active" id="tabCustomer">دخول الزبون</button>
-        <button class="auth-tab" id="tabMerchant">دخول / انضمام التاجر</button>
+        <button class="auth-tab active" id="tabCustomer" onclick="switchAuthTab('customer')">دخول</button>
+        <button class="auth-tab" id="tabMerchant" onclick="switchAuthTab('merchant')">انضمام متجر</button>
       </div>
 
-      <!-- Customer Form -->
-      <form id="customerForm" class="auth-form active" onsubmit="event.preventDefault(); alert('تم تسجيل الدخول بنجاح!');">
-        <input type="text" placeholder="رقم الهاتف أو البريد الإلكتروني" required />
+      <form id="customerForm" class="auth-form active" onsubmit="event.preventDefault(); alert('تم تسجيل الدخول!'); closeAuthModal();">
+        <input type="text" placeholder="البريد الإلكتروني أو الهاتف" required />
         <input type="password" placeholder="كلمة المرور" required />
         <button type="submit" class="save-btn">تسجيل الدخول</button>
       </form>
 
-      <!-- Merchant Form -->
-      <form id="merchantForm" class="auth-form" onsubmit="event.preventDefault(); alert('شكراً لطلبك! سيتم مراجعة متجرك والتواصل معك.');">
+      <form id="merchantForm" class="auth-form" onsubmit="event.preventDefault(); alert('تم تقديم طلبك بنجاح! سنتواصل معك لربط متجرك.'); closeAuthModal();">
         <input type="text" placeholder="اسم المتجر / المشروع" required />
-        <input type="tel" placeholder="رقم واتساب للتواصل" required />
+        <input type="tel" placeholder="رقم واتساب المتجر (+968)" required />
         <select required>
-          <option value="">اختر مجال متجرك...</option>
+          <option value="">اختر نشاط المتجر...</option>
           <option value="bakery">مخبوزات وحلويات</option>
           <option value="fashion">أزياء وملابس</option>
           <option value="coffee">قهوة وماتشا</option>
           <option value="digital">خدمات رقمية</option>
         </select>
-        <button type="submit" class="save-btn gold-btn-style">تقديم طلب انضمام المتجر</button>
+        <button type="submit" class="save-btn gold-btn-style">تقديم طلب الاشتراك</button>
       </form>
-    </div>
-  </div>
-
-  <!-- Oman Location Selector Modal -->
-  <div class="modal-overlay" id="locationModal">
-    <div class="modal-card">
-      <h3>تحديد موقع التوصيل في سلطنة عمان</h3>
-      <button class="geo-btn" id="geoBtn"><i class="fa-solid fa-crosshairs"></i> تحديد موقعي التلقائي</button>
-      <div class="select-group">
-        <select id="govSelect"><option value="">اختر المحافظة...</option></select>
-        <select id="wilSelect" disabled><option value="">اختر الولاية...</option></select>
-      </div>
-      <button class="save-btn" id="saveLocBtn">تأكيد الموقع</button>
-    </div>
-  </div>
-
-  <!-- Cart Drawer -->
-  <div class="cart-drawer" id="cartDrawer">
-    <div class="cart-header">
-      <h3>سلة التسوق (<span id="cartDrawerCount">0</span>)</h3>
-      <button class="close-cart" id="closeCart">&times;</button>
-    </div>
-    
-    <div class="cart-body" id="cartItemsContainer">
-      <p class="empty-msg">السلة فارغة حالياً</p>
-    </div>
-
-    <div class="cart-footer">
-      <div class="payment-method-select">
-        <label>اختر طريقة الدفع:</label>
-        <select id="paymentMethod">
-          <option value="whatsapp">💬 إتمام الطلب والدفع عبر الواتساب</option>
-          <option value="card">💳 بطاقة بنكية / ثواني (Thawani)</option>
-          <option value="cod">💵 الدفع عند الاستلام</option>
-        </select>
-      </div>
-      <div class="total-row">
-        <span>المجموع الإجمالي:</span>
-        <strong id="cartTotalVal">0.000 ر.ع</strong>
-      </div>
-      <button class="checkout-btn" onclick="handleCheckout()">تأكيد وإتمام الطلب</button>
     </div>
   </div>
 
