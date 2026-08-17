@@ -1,71 +1,46 @@
-// --- 1. سلطنة عمان - المحافظات والولايات ---
-const omanLocations = {
-  "مسقط": ["مسقط", "مطرح", "بوشر", "السيْب", "العامرات", "قريات"],
-  "ظفار": ["صلالة", "طاقة", "مرباط", "ثمريت", "رخيوت", "ضلكوت"],
-  "مسندم": ["خصب", "دبا", "بخاء", "مدحاء"],
-  "البريمي": ["البريمي", "محضة", "السنينة"],
-  "الداخلية": ["نزوى", "بهلاء", "منح", "الحمراء", "أدم", "سمائل"],
-  "شمال الباطنة": ["صحار", "صحم", "الخابورة", "السويق", "لوى", "شناص"],
-  "جنوب الباطنة": ["الرستاق", "بركاء", "المصنعة", "العوابي", "نخل"],
-  "شمال الشرقية": ["إبراء", "المضيبي", "بدية", "القابل"],
-  "جنوب الشرقية": ["صور", "الكامل والوافي", "جعلان بني بو حسن", "جعلان بني بو علي"],
-  "الظاهرة": ["عبري", "ينقل", "ضنك"],
-  "الوسطى": ["هيماء", "الدقم", "محوت"]
-};
-
-// --- 2. أقسام متجر رف التفصيلية ---
-const categoriesData = [
-  { title: "المخبوزات والحلويات", items: ["مخبوزات طازجة", "حلويات فاخرة", "كيك المناسبات", "معجنات يومية"] },
-  { title: "الأزياء والملابس", items: ["عبايات أنيقة", "مخورات عُمانية", "دشداشة عُمانية", "ملابس وأطقم كاملة"] },
-  { title: "الكماليات والإكسسوارات", items: ["ساعات أنيقة", "مسباح فاخر", "أقلام راقية", "أحذية رجالية ونسائية"] },
-  { title: "ركن القهوة والماتشا", items: ["شاي ماتشا فاخر", "حبوب قهوة مختصة", "أدوات تحضير القهوة", "أدوات الماتشا"] },
-  { title: "الأكواب والفناجين", items: ["أكواب سيراميك", "فناجين قهوة", "أكواب إسبريسو", "أكواب مرسومة يدوياً"] },
-  { title: "الخدمات الرقمية والترفيه", items: ["أجهزة وألعاب (Sony / Nintendo)", "برامج أدوبي (Adobe)", "تصميم عروض تقديمية", "إعداد مشاريع"] }
+const storesData = [
+  { id: "bakes", name: "مخبز بيكس Bakes", category: "مخبوزات وحلويات", phone: "96890000001", img: "https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=150" },
+  { id: "dar_alez", name: "بوتيك دار العز", category: "أزياء عُمانية", phone: "96890000002", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" },
+  { id: "matcha_corner", name: "ركن الماتشا", category: "قهوة وماتشا", phone: "96890000003", img: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=150" },
+  { id: "asala_acc", name: "كماليات الأصالة", category: "كماليات وإكسسوارات", phone: "96890000004", img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=150" }
 ];
 
-// --- 3. منتجات نموذجية لمتجر رف ---
 const productsData = [
-  { id: 1, name: "كيكة الشوكولاتة والكراميل", category: "bakery", vendor: "مخبز بيكس Bakes", price: 6.500, img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400" },
-  { id: 2, name: "عباية سوداء بلمسة حريرية", category: "fashion", vendor: "بوتيك دار العز", price: 28.000, img: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=400" },
-  { id: 3, name: "شاي ماتشا ياباني فاخر (درجة احتفالية)", category: "coffee", vendor: "ركن الماتشا", price: 12.000, img: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=400" },
-  { id: 4, name: "مسباح بكالايت خامة فاخرة", category: "accessories", vendor: "كماليات الأصالة", price: 14.500, img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400" },
-  { id: 5, name: "كوب سيراميك مصنوع ومطلي يدوياً", category: "cups", vendor: "استوديو الخزف", price: 5.200, img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400" },
-  { id: 6, name: "اشتراك أدوبي باقة المصممين السنوية", category: "digital", vendor: "Promt.ai الرقمية", price: 18.000, img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400" }
+  { id: 1, name: "كيكة الشوكولاتة والكراميل", category: "bakery", vendor: "مخبز بيكس Bakes", phone: "96890000001", price: 6.500, img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400" },
+  { id: 2, name: "عباية سوداء بلمسة حريرية", category: "fashion", vendor: "بوتيك دار العز", phone: "96890000002", price: 28.000, img: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=400" },
+  { id: 3, name: "شاي ماتشا ياباني فاخر", category: "coffee", vendor: "ركن الماتشا", phone: "96890000003", price: 12.000, img: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=400" },
+  { id: 4, name: "مسباح بكالايت فاخر", category: "accessories", vendor: "كماليات الأصالة", phone: "96890000004", price: 14.500, img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400" },
+  { id: 5, name: "كوب سيراميك يدوي الصنع", category: "coffee", vendor: "استوديو الخزف", phone: "96890000005", price: 5.200, img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400" },
+  { id: 6, name: "اشتراك أدوبي السنوي", category: "digital", vendor: "Promt.ai الرقمية", phone: "96890000006", price: 18.000, img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400" }
 ];
 
-// --- 4. عروض التجار الحية ---
-const merchantOffers = [
-  { text: "🚚 **توصيل مجاني**: عند الشراء بقيمة 15 ر.ع أو أكثر لجميع المحافظات!" },
-  { text: "🔥 **مخبز بيكس**: خصم 25% على طلبات الكيك والمعجنات اليوم." },
-  { text: "🍵 **ركن الماتشا**: احصل على خفاقة مجانية عند شراء طقم الماتشا الكامل." }
-];
+let selectedProduct = null;
 
-let cart = [];
-
-// --- Init App ---
 document.addEventListener("DOMContentLoaded", () => {
-  renderAnnouncements();
-  renderCategories();
+  renderStores();
   renderProducts(productsData);
-  initLocationModal();
-  initCartDrawer();
-  initFilterTabs();
-  initStatsCounter();
+  initFilters();
+  initSearch();
+  
+  document.getElementById("loginBtn").onclick = () => openAuthModal('customer');
+  document.getElementById("joinMerchantBtn").onclick = () => openAuthModal('merchant');
 });
 
-function renderAnnouncements() {
-  const wrapper = document.getElementById("tickerWrapper");
-  wrapper.innerHTML = merchantOffers.map(o => `<span class="ticker-item">${o.text}</span>`).join("");
-}
-
-function renderCategories() {
-  const grid = document.getElementById("categoriesGrid");
-  grid.innerHTML = categoriesData.map(c => `
-    <div class="cat-card">
-      <h3>${c.title}</h3>
-      <ul>${c.items.map(i => `<li>${i}</li>`).join("")}</ul>
+function renderStores() {
+  const grid = document.getElementById("storesGrid");
+  grid.innerHTML = storesData.map(s => `
+    <div class="store-card" onclick="filterByVendor('${s.name}')">
+      <img src="${s.img}" class="store-avatar" alt="${s.name}" />
+      <div class="store-name">${s.name}</div>
+      <div class="store-badge"><i class="fa-solid fa-circle-check"></i> ${s.category}</div>
     </div>
   `).join("");
+}
+
+function filterByVendor(vendorName) {
+  const filtered = productsData.filter(p => p.vendor === vendorName);
+  renderProducts(filtered);
+  document.getElementById("products").scrollIntoView({ behavior: 'smooth' });
 }
 
 function renderProducts(items) {
@@ -77,103 +52,83 @@ function renderProducts(items) {
       <div class="prod-vendor">${p.vendor}</div>
       <div class="prod-footer">
         <span class="prod-price">${p.price.toFixed(3)} ر.ع</span>
-        <button class="add-btn" onclick="addToCart(${p.id})">إضافة للسلة</button>
+        <button class="order-btn" onclick="openOrderModal(${p.id})">أطلب الآن</button>
       </div>
     </div>
   `).join("");
 }
 
-function initFilterTabs() {
-  const btns = document.querySelectorAll(".tab-btn");
-  btns.forEach(btn => {
-    btn.onclick = () => {
-      btns.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      const filter = btn.dataset.filter;
-      if (filter === "all") renderProducts(productsData);
-      else renderProducts(productsData.filter(p => p.category === filter));
+function openOrderModal(prodId) {
+  selectedProduct = productsData.find(p => p.id === prodId);
+  if (!selectedProduct) return;
+
+  document.getElementById("modalProdTitle").textContent = selectedProduct.name;
+  document.getElementById("modalProdImg").src = selectedProduct.img;
+  document.getElementById("modalProdVendor").textContent = "المتجر: " + selectedProduct.vendor;
+  document.getElementById("modalProdPrice").textContent = "السعر: " + selectedProduct.price.toFixed(3) + " ر.ع";
+  document.getElementById("orderNoteInput").value = "";
+
+  document.getElementById("orderModal").classList.add("open");
+}
+
+function closeOrderModal() {
+  document.getElementById("orderModal").classList.remove("open");
+  selectedProduct = null;
+}
+
+document.getElementById("sendWhatsAppBtn").onclick = () => {
+  if (!selectedProduct) return;
+  const note = document.getElementById("orderNoteInput").value.trim();
+  
+  let msg = `مرحباً ${selectedProduct.vendor}، أود طلب المنتج التالي من خلال منصة Raff:\n\n`;
+  msg += `📌 *المنتج:* ${selectedProduct.name}\n`;
+  msg += `💰 *السعر:* ${selectedProduct.price.toFixed(3)} ر.ع\n`;
+  if (note) msg += `📝 *ملاحظات التخصيص:* ${note}\n`;
+  msg += `\nيرجى تزويدي بتفاصيل التوصيل والحساب لإتمام الطلب.`;
+
+  window.open(`https://wa.me/${selectedProduct.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+};
+
+function initFilters() {
+  const tabs = document.querySelectorAll(".tab-btn");
+  tabs.forEach(tab => {
+    tab.onclick = () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      const filter = tab.dataset.filter;
+      const list = filter === "all" ? productsData : productsData.filter(p => p.category === filter);
+      renderProducts(list);
     };
   });
 }
 
-function addToCart(id) {
-  const item = productsData.find(p => p.id === id);
-  cart.push(item);
-  updateCartUI();
+function initSearch() {
+  document.getElementById("searchInput").addEventListener("input", (e) => {
+    const val = e.target.value.toLowerCase().trim();
+    renderProducts(productsData.filter(p => p.name.toLowerCase().includes(val) || p.vendor.toLowerCase().includes(val)));
+  });
 }
 
-function updateCartUI() {
-  document.getElementById("cartCount").textContent = cart.length;
-  document.getElementById("cartDrawerCount").textContent = cart.length;
-  
-  const container = document.getElementById("cartItemsContainer");
-  if (cart.length === 0) {
-    container.innerHTML = '<p class="empty-msg">السلة فارغة حالياً</p>';
+function openAuthModal(type) {
+  document.getElementById("authModal").classList.add("open");
+  switchAuthTab(type);
+}
+
+function closeAuthModal() {
+  document.getElementById("authModal").classList.remove("open");
+}
+
+function switchAuthTab(type) {
+  const tabCust = document.getElementById("tabCustomer");
+  const tabMerch = document.getElementById("tabMerchant");
+  const formCust = document.getElementById("customerForm");
+  const formMerch = document.getElementById("merchantForm");
+
+  if (type === 'customer') {
+    tabCust.classList.add("active"); tabMerch.classList.remove("active");
+    formCust.classList.add("active"); formMerch.classList.remove("active");
   } else {
-    container.innerHTML = cart.map(i => `
-      <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #333; padding-bottom:8px;">
-        <div>
-          <div>${i.name}</div>
-          <small style="color:var(--terracotta);">${i.vendor}</small>
-        </div>
-        <strong>${i.price.toFixed(3)} ر.ع</strong>
-      </div>
-    `).join("");
+    tabMerch.classList.add("active"); tabCust.classList.remove("active");
+    formMerch.classList.add("active"); formCust.classList.remove("active");
   }
-
-  const total = cart.reduce((sum, item) => sum + item.price, 0);
-  document.getElementById("cartTotalVal").textContent = total.toFixed(3) + " ر.ع";
-}
-
-function initCartDrawer() {
-  const drawer = document.getElementById("cartDrawer");
-  document.getElementById("cartBtn").onclick = () => drawer.classList.add("open");
-  document.getElementById("closeCart").onclick = () => drawer.classList.remove("open");
-}
-
-function initLocationModal() {
-  const modal = document.getElementById("locationModal");
-  const govSelect = document.getElementById("govSelect");
-  const wilSelect = document.getElementById("wilSelect");
-
-  document.getElementById("locationBtn").onclick = () => modal.classList.add("open");
-
-  Object.keys(omanLocations).forEach(gov => {
-    const opt = document.createElement("option");
-    opt.value = gov; opt.textContent = gov;
-    govSelect.appendChild(opt);
-  });
-
-  govSelect.onchange = () => {
-    wilSelect.innerHTML = '<option value="">اختر الولاية...</option>';
-    if (govSelect.value) {
-      wilSelect.disabled = false;
-      omanLocations[govSelect.value].forEach(w => {
-        const opt = document.createElement("option");
-        opt.value = w; opt.textContent = w;
-        wilSelect.appendChild(opt);
-      });
-    } else { wilSelect.disabled = true; }
-  };
-
-  document.getElementById("saveLocBtn").onclick = () => {
-    if (govSelect.value && wilSelect.value) {
-      document.getElementById("currentLocation").textContent = `${govSelect.value} - ${wilSelect.value}`;
-      modal.classList.remove("open");
-    }
-  };
-
-  document.getElementById("geoBtn").onclick = () => {
-    document.getElementById("currentLocation").textContent = "مسقط - بوشر (تلقائي)";
-    modal.classList.remove("open");
-  };
-}
-
-function initStatsCounter() {
-  document.querySelectorAll(".stat-value").forEach(el => {
-    const target = parseFloat(el.dataset.target);
-    const decimals = parseInt(el.dataset.decimals || 0);
-    const suffix = el.dataset.suffix || "";
-    el.textContent = target.toFixed(decimals) + suffix;
-  });
 }
