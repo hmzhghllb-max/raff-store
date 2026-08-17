@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>Raff | منصة المتاجر المحلية</title>
+  <title>Raff | منصة المتاجر المحلية</title>
   
-  <!-- Fonts -->
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lateef:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -16,7 +16,7 @@
 </head>
 <body>
 
-  <!-- Video Background -->
+  <!-- Background Video -->
   <div class="bg">
     <video class="bg-video" autoplay muted loop playsinline>
       <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4" type="video/mp4" />
@@ -24,17 +24,15 @@
     <div class="overlay-dark"></div>
   </div>
 
-  <!-- Dynamic Merchant Announcement Ticker Bar (شريط العروض والتوصيل) -->
+  <!-- Dynamic Announcement Bar -->
   <div class="announcement-bar">
-    <div class="ticker-wrapper" id="tickerWrapper">
-      <!-- يتم تحميل عروض التجار والتوصيل المجاني ديناميكياً -->
-    </div>
+    <div class="ticker-wrapper" id="tickerWrapper"></div>
   </div>
 
-  <!-- Main Navigation Header -->
+  <!-- Header Navigation -->
   <header class="header">
     <div class="logo-btn">
-      <img src="assets/logo.webp" alt="رف" class="logo-img" onerror="this.src='https://via.placeholder.com/52/C57D5A/FFFFFF?text=Raff'" />
+      <img src="assets/logo.webp" alt="Raff" class="logo-img" onerror="this.src='https://via.placeholder.com/52/C57D5A/FFFFFF?text=Raff'" />
     </div>
 
     <nav class="nav-pill">
@@ -45,6 +43,12 @@
     </nav>
 
     <div class="header-actions">
+      <!-- Login Button -->
+      <button class="action-pill login-btn" id="loginBtn">
+        <i class="fa-solid fa-user icon-gold"></i>
+        <span>تسجيل الدخول</span>
+      </button>
+
       <!-- Location Selector -->
       <button class="action-pill" id="locationBtn">
         <i class="fa-solid fa-location-dot icon-gold"></i>
@@ -72,13 +76,13 @@
       </div>
     </div>
 
-  <h1 class="headline">
-  <span style="color: var(--gold); font-size: 1.2em;">Raff</span>
-  <span style="font-size: 0.6em; opacity: 0.9;">Platform for Local Brands</span>
-</h1>
+    <h1 class="headline">
+      <span class="brand-title">Raff</span>
+      <span class="brand-sub">Platform for Local Brands</span>
+    </h1>
 
     <p class="subhead">
-      منصة **رف** تجمع لك المخبوزات، الأزياء العُمانية، أدوات القهوة والماتشا، والخدمات الرقمية من أفضل المشاريع المحلية.
+      منصة **Raff** تجمع لك المخبوزات، الأزياء العُمانية، أدوات القهوة والماتشا، والخدمات الرقمية من أفضل المشاريع المحلية.
     </p>
 
     <!-- Interactive Search Bar -->
@@ -88,16 +92,14 @@
     </div>
   </section>
 
-  <!-- Catalog Categories Section (SHEIN/Adidas Luxury Layout) -->
+  <!-- Catalog Categories Section -->
   <section id="categories" class="main-section">
     <div class="section-header">
-      <h2>أقسام متجر رف</h2>
-      <p>تصفح التشكيلات الحصرية حسب التصنيف</p>
+      <h2>أقسام متجر Raff</h2>
+      <p>تصفح التشكيلات الحصرية حسب التصنيف (اضغط للانتقال للمنتجات)</p>
     </div>
 
-    <div class="categories-grid" id="categoriesGrid">
-      <!-- Loaded dynamically via JS -->
-    </div>
+    <div class="categories-grid" id="categoriesGrid"></div>
   </section>
 
   <!-- Products Showcase Section -->
@@ -115,16 +117,14 @@
       </div>
     </div>
 
-    <div class="products-grid" id="productsGrid">
-      <!-- Dynamic Products -->
-    </div>
+    <div class="products-grid" id="productsGrid"></div>
   </section>
 
-  <!-- Pricing Section (باستخدام الأسعار الدقيقة المطلوبة) -->
+  <!-- Pricing Section -->
   <section id="pricing" class="main-section pricing-bg">
     <div class="section-header">
       <span class="badge-gold">خطط العضوية والاشتراكات</span>
-      <h2>اختر الباقة المناسبة للتمتع بمميزات منصة رف</h2>
+      <h2>اختر الباقة المناسبة للتمتع بمميزات منصة Raff</h2>
       <p>دفع شفاف واشتراكات مخصصة للمتسوقين والتجار</p>
     </div>
 
@@ -133,7 +133,6 @@
       <div class="pricing-card">
         <h3 class="plan-title">الباقة الأساسية (Standard)</h3>
         <p class="plan-desc">الخيار المثالي للتسوق اليومي وسريع الاستجابة.</p>
-        
         <div class="price-box">
           <div class="price-row">
             <span>الاشتراك الشهري:</span>
@@ -147,13 +146,11 @@
             </div>
           </div>
         </div>
-
         <ul class="features-list">
           <li><i class="fa-solid fa-check"></i> وصول كامل لجميع المحلات والسكاشن</li>
           <li><i class="fa-solid fa-check"></i> تتبع حي ومباشر للشحنات في ولايات السلطنة</li>
           <li><i class="fa-solid fa-check"></i> الاستفادة من خصومات التجار وعروضهم</li>
         </ul>
-
         <button class="plan-btn">اشترك الآن</button>
       </div>
 
@@ -162,7 +159,6 @@
         <div class="top-badge">الأكثر طلباً وتوفيراً</div>
         <h3 class="plan-title">الباقة المتقدمة (VIP Pro)</h3>
         <p class="plan-desc">تجربة تسوق فاخرة وأولوية في معالجة الشحنات.</p>
-        
         <div class="price-box">
           <div class="price-row">
             <span>الاشتراك الشهري:</span>
@@ -176,16 +172,26 @@
             </div>
           </div>
         </div>
-
         <ul class="features-list">
           <li><i class="fa-solid fa-check"></i> كافة مميزات الباقة الأساسية</li>
           <li><i class="fa-solid fa-check"></i> شحن مجاني تلقائي فور تحديد التاجر للعرض</li>
           <li><i class="fa-solid fa-check"></i> أولوية تحضير طلبات الكيك والمخورات والخدمات</li>
           <li><i class="fa-solid fa-check"></i> دعم VIP متواصل 24/7</li>
         </ul>
-
         <button class="plan-btn gold-btn">اشترك الآن</button>
       </div>
+    </div>
+  </section>
+
+  <!-- Payment Methods Accepted Footer Banner -->
+  <section class="payment-methods-section">
+    <span>وسائل الدفع المقبولة والآمنة:</span>
+    <div class="payment-icons">
+      <i class="fa-brands fa-cc-visa" title="Visa"></i>
+      <i class="fa-brands fa-cc-mastercard" title="Mastercard"></i>
+      <i class="fa-brands fa-apple-pay" title="Apple Pay"></i>
+      <i class="fa-solid fa-wallet" title="Thawani / OmanNet"></i>
+      <i class="fa-solid fa-money-bill-transfer" title="الدفع عند الاستلام"></i>
     </div>
   </section>
 
@@ -213,18 +219,46 @@
     </div>
   </footer>
 
+  <!-- Login / Register Modal (للزبائن والتجار) -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-card">
+      <button class="close-modal" id="closeLoginModal">&times;</button>
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tabCustomer">دخول الزبون</button>
+        <button class="auth-tab" id="tabMerchant">دخول / انضمام التاجر</button>
+      </div>
+
+      <!-- Customer Form -->
+      <form id="customerForm" class="auth-form active" onsubmit="event.preventDefault(); alert('تم تسجيل الدخول بنجاح!');">
+        <input type="text" placeholder="رقم الهاتف أو البريد الإلكتروني" required />
+        <input type="password" placeholder="كلمة المرور" required />
+        <button type="submit" class="save-btn">تسجيل الدخول</button>
+      </form>
+
+      <!-- Merchant Form -->
+      <form id="merchantForm" class="auth-form" onsubmit="event.preventDefault(); alert('شكراً لطلبك! سيتم مراجعة متجرك والتواصل معك.');">
+        <input type="text" placeholder="اسم المتجر / المشروع" required />
+        <input type="tel" placeholder="رقم واتساب للتواصل" required />
+        <select required>
+          <option value="">اختر مجال متجرك...</option>
+          <option value="bakery">مخبوزات وحلويات</option>
+          <option value="fashion">أزياء وملابس</option>
+          <option value="coffee">قهوة وماتشا</option>
+          <option value="digital">خدمات رقمية</option>
+        </select>
+        <button type="submit" class="save-btn gold-btn-style">تقديم طلب انضمام المتجر</button>
+      </form>
+    </div>
+  </div>
+
   <!-- Oman Location Selector Modal -->
   <div class="modal-overlay" id="locationModal">
     <div class="modal-card">
       <h3>تحديد موقع التوصيل في سلطنة عمان</h3>
       <button class="geo-btn" id="geoBtn"><i class="fa-solid fa-crosshairs"></i> تحديد موقعي التلقائي</button>
       <div class="select-group">
-        <select id="govSelect">
-          <option value="">اختر المحافظة...</option>
-        </select>
-        <select id="wilSelect" disabled>
-          <option value="">اختر الولاية...</option>
-        </select>
+        <select id="govSelect"><option value="">اختر المحافظة...</option></select>
+        <select id="wilSelect" disabled><option value="">اختر الولاية...</option></select>
       </div>
       <button class="save-btn" id="saveLocBtn">تأكيد الموقع</button>
     </div>
@@ -236,15 +270,25 @@
       <h3>سلة التسوق (<span id="cartDrawerCount">0</span>)</h3>
       <button class="close-cart" id="closeCart">&times;</button>
     </div>
+    
     <div class="cart-body" id="cartItemsContainer">
       <p class="empty-msg">السلة فارغة حالياً</p>
     </div>
+
     <div class="cart-footer">
+      <div class="payment-method-select">
+        <label>اختر طريقة الدفع:</label>
+        <select id="paymentMethod">
+          <option value="whatsapp">💬 إتمام الطلب والدفع عبر الواتساب</option>
+          <option value="card">💳 بطاقة بنكية / ثواني (Thawani)</option>
+          <option value="cod">💵 الدفع عند الاستلام</option>
+        </select>
+      </div>
       <div class="total-row">
         <span>المجموع الإجمالي:</span>
         <strong id="cartTotalVal">0.000 ر.ع</strong>
       </div>
-      <button class="checkout-btn">إتمام الطلب عبر الواتساب</button>
+      <button class="checkout-btn" onclick="handleCheckout()">تأكيد وإتمام الطلب</button>
     </div>
   </div>
 
