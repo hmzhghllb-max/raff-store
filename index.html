@@ -3,132 +3,248 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Intelligence Designed To Evolve | متجر رف Raff Store</title>
+  <title>متجر رف | Raff Store - منصة المتاجر المحلية</title>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lateef:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link href="https://db.onlinewebfonts.com/c/8cb707a9b8a73f8a7403336b861c3074?family=BubbledotICG-FinePos" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
   <!-- Video Background -->
   <div class="bg">
     <video class="bg-video" autoplay muted loop playsinline>
       <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4" type="video/mp4" />
     </video>
+    <div class="overlay-dark"></div>
   </div>
 
-  <!-- Dynamic Announcement Ticker Bar (عروض التجار) -->
-  <div class="announcement-bar" id="announcementBar">
+  <!-- Dynamic Merchant Announcement Ticker Bar (شريط العروض والتوصيل) -->
+  <div class="announcement-bar">
     <div class="ticker-wrapper" id="tickerWrapper">
-      <!-- يتم تحميل العروض والتخفيضات والتوصيل المجاني المضافة من قبل التجار هنا تلقائياً -->
+      <!-- يتم تحميل عروض التجار والتوصيل المجاني ديناميكياً -->
     </div>
   </div>
 
-  <div class="page">
-    <!-- Header -->
-    <header class="header anim">
-      <div class="logo-btn">
-        <img src="assets/logo.webp" alt="" width="52" height="52" class="logo-img" />
-      </div>
+  <!-- Main Navigation Header -->
+  <header class="header">
+    <div class="logo-btn">
+      <img src="assets/logo.webp" alt="رف" class="logo-img" onerror="this.src='https://via.placeholder.com/52/C57D5A/FFFFFF?text=Raff'" />
+    </div>
 
-      <nav class="nav-pill">
-        <a href="#home" class="nav-link active">الرئيسية</a>
-        <a href="#sections" class="nav-link">الأقسام</a>
-        <a href="#pricing" class="nav-link">الاشتراكات</a>
-        <a href="#contact" class="nav-link">تواصل معنا</a>
-      </nav>
+    <nav class="nav-pill">
+      <a href="#hero" class="nav-link active">الرئيسية</a>
+      <a href="#categories" class="nav-link">الأقسام</a>
+      <a href="#products" class="nav-link">المنتجات</a>
+      <a href="#pricing" class="nav-link">الاشتراكات</a>
+    </nav>
 
-      <!-- Oman Location Picker -->
-      <div class="location-picker">
-        <button class="sign-in-pill" id="locationBtn">
-          <i class="fa-solid fa-location-dot"></i>
-          <span id="currentLocation">حدد موقعك</span>
-        </button>
-      </div>
-    </header>
+    <div class="header-actions">
+      <!-- Location Selector -->
+      <button class="action-pill" id="locationBtn">
+        <i class="fa-solid fa-location-dot icon-gold"></i>
+        <span id="currentLocation">تحديد الموقع</span>
+      </button>
 
-    <!-- Hero Section -->
-    <main class="hero">
-      <div class="trust-row anim" style="--d: 0.05s">
-        <div class="trust-avatars">
-          <div class="avatar a1"><div class="avatar-inner"><i class="fa-brands fa-microsoft"></i></div></div>
-          <div class="avatar a2"><div class="avatar-inner"><i class="fa-brands fa-amazon"></i></div></div>
-          <div class="avatar a3"><div class="avatar-inner"><i class="fa-brands fa-google"></i></div></div>
-        </div>
-        <div class="trust-pill">
-          <span>أكثر من +2000 متجر شريك</span>
-        </div>
-      </div>
+      <!-- Cart Drawer Trigger -->
+      <button class="action-pill cart-btn" id="cartBtn">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
 
-      <h1 class="headline">
-        <span class="anim" style="--d: 0.12s">Intelligence</span>
-        <span class="anim" style="--d: 0.3s">Designed To Evolve</span>
-      </h1>
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <div class="trust-row">
+      <div class="trust-avatars">
+        <div class="avatar"><div class="avatar-inner"><i class="fa-brands fa-microsoft"></i></div></div>
+        <div class="avatar"><div class="avatar-inner"><i class="fa-brands fa-amazon"></i></div></div>
+        <div class="avatar"><div class="avatar-inner"><i class="fa-brands fa-google"></i></div></div>
+      </div>
+      <div class="trust-pill">
+        <span>منصة تجمع أكثر من +2000 متجر مشروع محلي</span>
+      </div>
+    </div>
 
-      <p class="subhead anim" style="--d: 0.28s">
-        منصة رف تجمع لك أفضل المتاجر المحلية، المخبوزات، الأزياء، الكماليات، والخدمات الرقمية في مكان واحد.
-      </p>
+    <h1 class="headline">
+      <span>Intelligence</span>
+      <span>Designed To Evolve</span>
+    </h1>
 
-      <div class="cta-wrapper anim" style="--d: 0.4s">
-        <a href="#sections" class="cta-btn">تصفح المتاجر</a>
-      </div>
-    </main>
+    <p class="subhead">
+      منصة **رف** تجمع لك المخبوزات، الأزياء العُمانية، أدوات القهوة والماتشا، والخدمات الرقمية من أفضل المشاريع المحلية.
+    </p>
 
-    <!-- Stats Footer -->
-    <footer class="stats-footer">
-      <div class="stat-item anim" style="--d: 0.5s">
-        <span class="stat-icon">&lt;</span>
-        <div class="stat-value" data-target="120" data-suffix="ms">0</div>
-        <span class="stat-label">زمن الاستجابة</span>
-      </div>
-      <div class="stat-item anim" style="--d: 0.58s">
-        <span class="stat-icon">%</span>
-        <div class="stat-value" data-target="99.99" data-decimals="2" data-suffix="%">0</div>
-        <span class="stat-label">جاهزية المنصة</span>
-      </div>
-      <div class="stat-item anim" style="--d: 0.66s">
-        <span class="stat-icon">*</span>
-        <div class="stat-value" data-target="24" data-suffix="/7">0</div>
-        <span class="stat-label">عمل مستمر</span>
-      </div>
-      <div class="stat-item anim" style="--d: 0.74s">
-        <span class="stat-icon">#</span>
-        <div class="stat-value" data-target="2.4" data-decimals="1" data-suffix="M">0</div>
-        <span class="stat-label">عملية تسوق</span>
-      </div>
-    </footer>
-  </div>
-
-  <!-- Sections Showcase (Adidas/SHEIN Grid Dynamic Style) -->
-  <section id="sections" class="catalog-section">
-    <h2 class="section-title">أقسام المتجر</h2>
-    <div class="grid-container" id="categoryGrid">
-      <!-- Dynamic Categories Loaded via JS -->
+    <!-- Interactive Search Bar -->
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      <input type="text" id="searchInput" placeholder="ابحث عن مخبوزات، عبايات، ماتشا، أو خدمات رقمية..." />
     </div>
   </section>
 
-  <!-- Pricing Section Container -->
-  <section id="pricing" class="pricing-container"></section>
+  <!-- Catalog Categories Section (SHEIN/Adidas Luxury Layout) -->
+  <section id="categories" class="main-section">
+    <div class="section-header">
+      <h2>أقسام متجر رف</h2>
+      <p>تصفح التشكيلات الحصرية حسب التصنيف</p>
+    </div>
 
-  <!-- Location Picker Modal -->
+    <div class="categories-grid" id="categoriesGrid">
+      <!-- Loaded dynamically via JS -->
+    </div>
+  </section>
+
+  <!-- Products Showcase Section -->
+  <section id="products" class="main-section">
+    <div class="section-header">
+      <h2>أحدث المنتجات والعروض</h2>
+      <div class="filter-tabs" id="filterTabs">
+        <button class="tab-btn active" data-filter="all">الكل</button>
+        <button class="tab-btn" data-filter="bakery">مخبوزات وحلويات</button>
+        <button class="tab-btn" data-filter="fashion">أزياء وملابس</button>
+        <button class="tab-btn" data-filter="accessories">كماليات</button>
+        <button class="tab-btn" data-filter="coffee">قهوة وماتشا</button>
+        <button class="tab-btn" data-filter="cups">أكواب وفناجين</button>
+        <button class="tab-btn" data-filter="digital">خدمات رقمية</button>
+      </div>
+    </div>
+
+    <div class="products-grid" id="productsGrid">
+      <!-- Dynamic Products -->
+    </div>
+  </section>
+
+  <!-- Pricing Section (باستخدام الأسعار الدقيقة المطلوبة) -->
+  <section id="pricing" class="main-section pricing-bg">
+    <div class="section-header">
+      <span class="badge-gold">خطط العضوية والاشتراكات</span>
+      <h2>اختر الباقة المناسبة للتمتع بمميزات منصة رف</h2>
+      <p>دفع شفاف واشتراكات مخصصة للمتسوقين والتجار</p>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Standard Plan -->
+      <div class="pricing-card">
+        <h3 class="plan-title">الباقة الأساسية (Standard)</h3>
+        <p class="plan-desc">الخيار المثالي للتسوق اليومي وسريع الاستجابة.</p>
+        
+        <div class="price-box">
+          <div class="price-row">
+            <span>الاشتراك الشهري:</span>
+            <span class="price-val">0.900 <small>ر.ع / شهرياً</small></span>
+          </div>
+          <div class="price-row highlight">
+            <span>الاشتراك السنوي:</span>
+            <div>
+              <span class="old-price">10.800 ر.ع</span>
+              <span class="price-val gold">8.200 <small>ر.ع / سنوياً</small></span>
+            </div>
+          </div>
+        </div>
+
+        <ul class="features-list">
+          <li><i class="fa-solid fa-check"></i> وصول كامل لجميع المحلات والسكاشن</li>
+          <li><i class="fa-solid fa-check"></i> تتبع حي ومباشر للشحنات في ولايات السلطنة</li>
+          <li><i class="fa-solid fa-check"></i> الاستفادة من خصومات التجار وعروضهم</li>
+        </ul>
+
+        <button class="plan-btn">اشترك الآن</button>
+      </div>
+
+      <!-- VIP Pro Plan -->
+      <div class="pricing-card featured">
+        <div class="top-badge">الأكثر طلباً وتوفيراً</div>
+        <h3 class="plan-title">الباقة المتقدمة (VIP Pro)</h3>
+        <p class="plan-desc">تجربة تسوق فاخرة وأولوية في معالجة الشحنات.</p>
+        
+        <div class="price-box">
+          <div class="price-row">
+            <span>الاشتراك الشهري:</span>
+            <span class="price-val">1.200 <small>ر.ع / شهرياً</small></span>
+          </div>
+          <div class="price-row highlight">
+            <span>الاشتراك السنوي:</span>
+            <div>
+              <span class="old-price">14.400 ر.ع</span>
+              <span class="price-val gold">11.400 <small>ر.ع / سنوياً</small></span>
+            </div>
+          </div>
+        </div>
+
+        <ul class="features-list">
+          <li><i class="fa-solid fa-check"></i> كافة مميزات الباقة الأساسية</li>
+          <li><i class="fa-solid fa-check"></i> شحن مجاني تلقائي فور تحديد التاجر للعرض</li>
+          <li><i class="fa-solid fa-check"></i> أولوية تحضير طلبات الكيك والمخورات والخدمات</li>
+          <li><i class="fa-solid fa-check"></i> دعم VIP متواصل 24/7</li>
+        </ul>
+
+        <button class="plan-btn gold-btn">اشترك الآن</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Footer -->
+  <footer class="stats-footer">
+    <div class="stat-item">
+      <span class="stat-icon">&lt;</span>
+      <div class="stat-value" data-target="120" data-suffix="ms">0</div>
+      <span class="stat-label">سرعة الاستجابة</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-icon">%</span>
+      <div class="stat-value" data-target="99.99" data-decimals="2" data-suffix="%">0</div>
+      <span class="stat-label">جاهزية المنصة</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-icon">*</span>
+      <div class="stat-value" data-target="24" data-suffix="/7">0</div>
+      <span class="stat-label">خدمة مستمرة</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-icon">#</span>
+      <div class="stat-value" data-target="2.4" data-decimals="1" data-suffix="M">0</div>
+      <span class="stat-label">طلب مكتمل</span>
+    </div>
+  </footer>
+
+  <!-- Oman Location Selector Modal -->
   <div class="modal-overlay" id="locationModal">
-    <div class="modal-content">
-      <h3>اختر المحافظة والولاية</h3>
-      <button id="geoLocateBtn" class="geo-btn"><i class="fa-solid fa-crosshairs"></i> تحديد موقعي تلقائياً</button>
+    <div class="modal-card">
+      <h3>تحديد موقع التوصيل في سلطنة عمان</h3>
+      <button class="geo-btn" id="geoBtn"><i class="fa-solid fa-crosshairs"></i> تحديد موقعي التلقائي</button>
       <div class="select-group">
-        <select id="governorateSelect">
+        <select id="govSelect">
           <option value="">اختر المحافظة...</option>
         </select>
-        <select id="wilayatSelect" disabled>
+        <select id="wilSelect" disabled>
           <option value="">اختر الولاية...</option>
         </select>
       </div>
-      <button id="saveLocationBtn" class="cta-btn full-width">تأكيد الموقع</button>
+      <button class="save-btn" id="saveLocBtn">تأكيد الموقع</button>
+    </div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3>سلة التسوق (<span id="cartDrawerCount">0</span>)</h3>
+      <button class="close-cart" id="closeCart">&times;</button>
+    </div>
+    <div class="cart-body" id="cartItemsContainer">
+      <p class="empty-msg">السلة فارغة حالياً</p>
+    </div>
+    <div class="cart-footer">
+      <div class="total-row">
+        <span>المجموع الإجمالي:</span>
+        <strong id="cartTotalVal">0.000 ر.ع</strong>
+      </div>
+      <button class="checkout-btn">إتمام الطلب عبر الواتساب</button>
     </div>
   </div>
 
